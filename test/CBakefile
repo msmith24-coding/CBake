@@ -1,0 +1,14 @@
+$COMPILER = "g++";
+$FLAGS = "--std=c++20 -c";
+
+$FILES = "*.cpp";
+$OBJS = "*.o";
+
+action clean:
+    run("rm -f " + $OBJS);
+end
+
+action build:
+    run($COMPILER + " " + $FLAGS + " " + $FILES);
+    run($COMPILER + " " + $OBJS + " -o main");
+end
