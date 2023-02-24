@@ -43,10 +43,12 @@ int main(int argc, char** argv)
     // }
     
     Parser parse = Parser(lexResult.tokens);
-    std::map<std::string, std::string> tree = parse.buildTree();
+    std::map<std::string, std::vector<std::string>> tree = parse.buildTree();
 
-    const char *cmd = tree.at(action).c_str();
-    std::system(cmd);
+    for(int i = 0; i < tree.at(action).size(); i++) {
+        const char *cmd = tree.at(action).at(i).c_str();
+        std::system(cmd);
+    }
 
     return 0;
 }

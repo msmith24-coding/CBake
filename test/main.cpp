@@ -1,7 +1,8 @@
-#include <iostream>
+#include "io.h"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    println("Hello, world!");
+    println("nf[ouieawnf]");
     return 0;
 }

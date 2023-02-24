@@ -17,7 +17,7 @@ void Parser::advance()
     this->currentToken = this->tokens.at(this->position);
 }
 
-std::map<std::string, std::string> Parser::buildTree()
+std::map<std::string, std::vector<std::string>> Parser::buildTree()
 {
     while(this->currentToken.getType() != TT_EOF) {
         if(this->currentToken.getType() == TT_NL) {
@@ -32,7 +32,7 @@ std::map<std::string, std::string> Parser::buildTree()
             if(this->currentToken.getType() == TT_ID) {
                 std::string actionName = this->currentToken.getValue();
                 this->advance();
-                std::string body = this->makeAction();
+                std::vector<std::string> body = this->makeAction();
                 this->actionMap.insert({ actionName, body });
                 this->advance();
             }
@@ -96,9 +96,9 @@ std::string Parser::makeStringArg(std::string endTokenType)
     return result;
 }
 
-std::string Parser::makeAction()
+std::vector<std::string> Parser::makeAction()
 {
-    std::string result;
+    std::vector<std::string> result;
     if(this->currentToken.getType() == TT_THEN) {
         this->advance();
         while(!this->isKeyToken("end")) {
@@ -107,7 +107,7 @@ std::string Parser::makeAction()
                 this->advance();
             }
             else if(this->isFuncToken("run")) {
-                result += this->makeRunFunc();
+                result.push_back(this->makeRunFunc());
             }
             else if(this->isFuncToken("call")) {
                 std::string actionToCall = this->makeCallFunc();
@@ -115,12 +115,15 @@ std::string Parser::makeAction()
                     std::cout << "[ERR] Action could not be found." << std::endl;
                     exit(1);
                 }
-                result += this->actionMap.at(actionToCall);
+                for(std::string str : this->actionMap.at(actionToCall)) {
+                    result.push_back(str);
+                }
             } else {
                 std::cout << "!!!" << this->currentToken.asString() <<  " " << this->position << std::endl;
             }
         }
     }
+
     return result;
 }
 
@@ -133,7 +136,7 @@ std::string Parser::makeRunFunc()
         this->advance();
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
-            return arg0 + "\n";
+            return arg0;
         }
     }
     return "NULL";

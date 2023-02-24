@@ -11,7 +11,7 @@ class Parser
     private:
         std::vector<Token> tokens;  
         std::map<std::string, std::string> varSymbols;
-        std::map<std::string, std::string> actionMap;
+        std::map<std::string, std::vector<std::string>> actionMap;
         int position;
         int currentLine;
         Token currentToken;
@@ -19,12 +19,12 @@ class Parser
         Parser(std::vector<Token> tokens);
 
         void advance();
-        std::map<std::string, std::string> buildTree();
+        std::map<std::string, std::vector<std::string>> buildTree();
 
         void makeVariable();
 
         std::string makeStringArg(std::string endTokenType);
-        std::string makeAction();
+        std::vector<std::string> makeAction();
         std::string makeRunFunc();
         std::string makeCallFunc();
 
