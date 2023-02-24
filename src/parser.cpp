@@ -109,6 +109,13 @@ std::vector<std::string> Parser::makeAction()
             else if(this->isFuncToken("run")) {
                 result.push_back(this->makeRunFunc());
             }
+            else if(this->isFuncToken("del")) {
+                result.push_back(this->makeDelFunc());
+            }
+            else if(this->isFuncToken("print")) {
+                std::string out  = this->makePrintFunc();
+                std::cout << out << std::endl;
+            }
             else if(this->isFuncToken("call")) {
                 std::string actionToCall = this->makeCallFunc();
                 if(!this->actionMap.count(actionToCall)){
@@ -143,6 +150,48 @@ std::string Parser::makeRunFunc()
 }
 
 std::string Parser::makeCallFunc()
+{
+    this->advance();
+    if(this->currentToken.getType() == TT_LPAREN) {
+        this->advance();
+        std::string arg0 = this->makeStringArg(TT_RPAREN);
+        this->advance();
+        if(this->currentToken.getType() == TT_EOL) {
+            this->advance();
+            return arg0;
+        }
+    }
+    return "NULL";
+}
+
+std::string Parser::makeDelFunc()
+{
+    this->advance();
+    if(this->currentToken.getType() == TT_LPAREN) {
+        this->advance();
+        std::string arg0 = this->makeStringArg(TT_RPAREN);
+        this->advance();
+        if(this->currentToken.getType() == TT_EOL) {
+            this->advance();
+
+            #ifdef _WIN32
+                return "del " + arg0;
+            #endif
+
+            #ifdef __APPLE__
+                return "rm -rf " + arg0;
+            #endif
+
+            #ifdef __linux__
+                return "rm -rf " + arg0;
+            #endif
+
+        }
+    }
+    return "NULL";
+}
+
+std::string Parser::makePrintFunc()
 {
     this->advance();
     if(this->currentToken.getType() == TT_LPAREN) {

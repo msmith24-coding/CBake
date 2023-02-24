@@ -25,8 +25,11 @@ class Parser
 
         std::string makeStringArg(std::string endTokenType);
         std::vector<std::string> makeAction();
+
         std::string makeRunFunc();
         std::string makeCallFunc();
+        std::string makeDelFunc();
+        std::string makePrintFunc();
 
         bool isKeyToken(std::string value);
         bool isFuncToken(std::string func);

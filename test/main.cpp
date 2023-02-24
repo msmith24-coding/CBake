@@ -3,6 +3,6 @@
 int main()
 {
     println("Hello, world!");
-    println("nf[ouieawnf]");
+    println("Hello, world!");
     return 0;
 }
