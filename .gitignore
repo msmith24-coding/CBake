@@ -31,5 +31,8 @@
 *.out
 *.app
 cbake
+c-test
+cpp-test
 
+# macOS
 .DS_Store
