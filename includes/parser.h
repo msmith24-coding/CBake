@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-#include "../includes/token.hpp"
+#include "token.h"
 
 class Parser
 {

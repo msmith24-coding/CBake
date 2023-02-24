@@ -3,10 +3,10 @@
 #include <filesystem>
 #include <string>
 
-#include "../includes/lexer.hpp"
-#include "../includes/parser.hpp"
-#include "../includes/keywords.hpp"
-#include "../includes/functions.hpp"
+#include "../includes/lexer.h"
+#include "../includes/parser.h"
+#include "../includes/keywords.h"
+#include "../includes/functions.h"
 
 int main(int argc, char** argv)
 {

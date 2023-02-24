@@ -1,4 +1,4 @@
-#include "../includes/functions.hpp"
+#include "../includes/functions.h"
 
 std::vector<std::string> functions;
 

@@ -1,7 +1,7 @@
-#include "../includes/lexer.hpp"
-#include "../includes/tokentypes.hpp"
-#include "../includes/keywords.hpp"
-#include "../includes/functions.hpp"
+#include "../includes/lexer.h"
+#include "../includes/tokentypes.h"
+#include "../includes/keywords.h"
+#include "../includes/functions.h"
 
 #include <iostream>
 #include <algorithm>

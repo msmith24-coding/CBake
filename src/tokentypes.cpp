@@ -1,4 +1,4 @@
-#include "../includes/tokentypes.hpp"
+#include "../includes/tokentypes.h"
 
 const std::string TT_EOF = "EOF";
 const std::string TT_EOL = "EOL";

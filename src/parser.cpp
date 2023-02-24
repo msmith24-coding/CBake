@@ -1,5 +1,5 @@
-#include "../includes/parser.hpp"
-#include "../includes/tokentypes.hpp"
+#include "../includes/parser.h"
+#include "../includes/tokentypes.h"
 
 #include <iostream>
 

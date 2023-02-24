@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "token.hpp"
+#include "token.h"
 
 struct LexResult
 {

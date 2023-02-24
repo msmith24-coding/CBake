@@ -1,4 +1,4 @@
-#include "../includes/keywords.hpp"
+#include "../includes/keywords.h"
 
 std::vector<std::string> keywords;
 

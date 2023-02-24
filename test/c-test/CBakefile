@@ -1,0 +1,18 @@
+$COMPILER = "gcc";
+$FLAGS = "-c";
+
+$FILES = "./src/*.c";
+$OBJS = "*.o";
+$OUT = "main";
+
+action clean:
+    print("Cleaning object files.");
+    del($OBJS);
+end
+
+action build:
+    run($COMPILER + " " + $FLAGS + " " + $FILES);
+    run($COMPILER + " " + $OBJS  + " -o " + $OUT);
+    print("Finished.");
+    call("clean");
+end
