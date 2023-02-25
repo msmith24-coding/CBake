@@ -1,5 +1,5 @@
 $COMPILER = "g++";
-$FLAGS = "--std=c++20 -c";
+$FLAGS = "--std=c++20";
 
 $FILES = "./src/*.cpp";
 $OUT = "./bin/cbake";
