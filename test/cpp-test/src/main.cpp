@@ -2,6 +2,7 @@
 
 int main()
 {
-    println("Hello, World!");
+    print("Hello, ");
+    println("World!");
     return 0;
 }

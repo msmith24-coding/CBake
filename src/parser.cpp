@@ -112,6 +112,9 @@ std::vector<std::string> Parser::makeAction()
             else if(this->isFuncToken("del")) {
                 result.push_back(this->makeDelFunc());
             }
+            else if(this->isFuncToken("compile")) {
+                result.push_back(this->makeCompileFunc());
+            }
             else if(this->isFuncToken("print")) {
                 std::string out  = this->makePrintFunc();
                 std::cout << out << std::endl;
@@ -201,6 +204,34 @@ std::string Parser::makePrintFunc()
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
             return arg0;
+        }
+    }
+    return "NULL";
+}
+
+std::string Parser::makeCompileFunc()
+{
+    this->advance();
+    if(this->currentToken.getType() == TT_LPAREN) {
+        this->advance();
+        std::string compiler = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string flags = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string files = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string out = this->makeStringArg(TT_RPAREN);
+
+        this->advance();
+        if(this->currentToken.getType() == TT_EOL) {
+            this->advance();
+            std::string result;
+            result = compiler + " " + flags + " -c " + files + "\n";
+            result += compiler + " *.o -o " + out;
+            return result;
         }
     }
     return "NULL";

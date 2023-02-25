@@ -51,6 +51,10 @@ LexResult Lexer::makeTokens()
             tokens.push_back(Token(TT_PLUS));
             this->advance();
         }
+        else if(this->currentChar == ',') {
+            tokens.push_back(Token(TT_COMMA));
+            this->advance();
+        }
         else if(this->currentChar == '(') {
             tokens.push_back(Token(TT_LPAREN));
             this->advance();

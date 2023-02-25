@@ -11,6 +11,7 @@ const std::string TT_RPAREN = "RPAREN";
 const std::string TT_EQ = "EQ";
 const std::string TT_EQEQ = "EQEQ";
 const std::string TT_THEN = "THEN";
+const std::string TT_COMMA = "COMMA";
 
 const std::string TT_VAR = "VAR";
 const std::string TT_STR = "STR";

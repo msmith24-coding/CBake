@@ -1,17 +1,15 @@
 $COMPILER = "g++";
-$FLAGS = "--std=c++20 -c";
+$FLAGS = "--std=c++20";
 
 $FILES = "./src/*.cpp";
-$OBJS = "*.o";
 $OUT = "main";
 
 action clean:
-    del($OBJS);
+    del("*.o");
 end
 
 action build:
-    run($COMPILER + " " + $FLAGS + " " + $FILES);
-    run($COMPILER + " " + $OBJS  + " -o " + $OUT);
+    compile($COMPILER, $FLAGS, $FILES, $OUT);
     print("Finished.");
     call("clean");
 end

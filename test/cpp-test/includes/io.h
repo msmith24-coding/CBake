@@ -5,5 +5,6 @@
 #include <string>
 
 void println(std::string message);
+void print(std::string message);
 
 #endif

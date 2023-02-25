@@ -9,4 +9,5 @@ void setupFunctions()
     functions.push_back("call");
     functions.push_back("del");
     functions.push_back("print");
+    functions.push_back("compile");
 }

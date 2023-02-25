@@ -2,15 +2,15 @@ $COMPILER = "g++";
 $FLAGS = "--std=c++20 -c";
 
 $FILES = "./src/*.cpp";
-$OBJS = "*.o";
+$OUT = "./bin/cbake";
 
 action clean:
-    print("Cleaning object files.");
-    del($OBJS);
+    print("Cleaning all object files.");
+    del("*.o");
 end
 
 action build:
-    run($COMPILER + " " + $FLAGS + " " + $FILES);
-    run($COMPILER + " " + $OBJS  + " -o ./bin/cbake");
+    compile($COMPILER, $FLAGS, $FILES, $OUT);
     call("clean");
+    print("Finished build action.");
 end

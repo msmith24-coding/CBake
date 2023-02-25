@@ -14,6 +14,7 @@ const extern std::string TT_RPAREN;
 const extern std::string TT_EQ;
 const extern std::string TT_EQEQ;
 const extern std::string TT_THEN;
+const extern std::string TT_COMMA;
 
 const extern std::string TT_VAR;
 const extern std::string TT_STR;
