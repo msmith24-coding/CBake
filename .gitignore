@@ -30,9 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Unix Executables
 cbake
 c-test
 cpp-test
+main
 
 # macOS
 .DS_Store

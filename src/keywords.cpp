@@ -7,4 +7,5 @@ void setupKeywords()
     /* Adds a keyword into the keywords vector. */
     keywords.push_back("action");
     keywords.push_back("end");
+    keywords.push_back("null");
 }

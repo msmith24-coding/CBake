@@ -2,5 +2,5 @@
 
 void println(const char* message)
 {
-    printf(message , '\n');
+    printf(message, '\n');
 }

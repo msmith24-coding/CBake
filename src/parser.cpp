@@ -84,9 +84,13 @@ std::string Parser::makeStringArg(std::string endTokenType)
                 result += this->varSymbols.at(this->currentToken.getValue());
                 this->advance();
             } else {
-                std::cout << "[ERR] SymbolError: Unknown variable '" << this->currentToken.getValue() << " on line " << this->currentLine << "." << std::endl;
+                std::cout << "[ERR] SymbolError: Unknown variable '" << this->currentToken.getValue() << "' on line " << this->currentLine << "." << std::endl;
                 exit(1);
             }
+        }
+        else if(this->isKeyToken("null")) {
+            result += "";
+            this->advance();
         }
         else if(this->currentToken.getType() == TT_PLUS) {
             result += "";
@@ -229,7 +233,7 @@ std::string Parser::makeCompileFunc()
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
             std::string result;
-            result = compiler + " " + flags + " -c " + files + "\n";
+            result = compiler + " " + flags + " -c " + files;
             result += compiler + " *.o -o " + out;
             return result;
         }
