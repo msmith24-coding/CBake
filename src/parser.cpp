@@ -233,7 +233,7 @@ std::string Parser::makeCompileFunc()
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
             std::string result;
-            result = compiler + " " + flags + " -c " + files;
+            result = compiler + " " + flags + " -c " + files + "\n";
             result += compiler + " *.o -o " + out;
             return result;
         }
