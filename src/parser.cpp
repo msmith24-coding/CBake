@@ -123,6 +123,13 @@ std::vector<std::string> Parser::makeAction()
                     result.push_back(str);
                 }
             }
+            else if(this->isFuncToken("simple_compile")) {
+                std::vector<std::string> blockResult = this->makeSimpleCompileFunc();
+
+                for(std::string str : blockResult) {
+                    result.push_back(str);
+                }
+            }
             else if(this->isFuncToken("print")) {
                 std::string out  = this->makePrintFunc();
                 std::cout << out << std::endl;
@@ -217,7 +224,7 @@ std::string Parser::makePrintFunc()
     return "NULL";
 }
 
-std::vector<std::string> Parser::makeCompileFunc()
+std::vector<std::string> Parser::makeSimpleCompileFunc()
 {
     std::vector<std::string> result;
     this->advance();
@@ -226,10 +233,10 @@ std::vector<std::string> Parser::makeCompileFunc()
         std::string compiler = this->makeStringArg(TT_COMMA);
 
         this->advance();
-        std::string flags = this->makeStringArg(TT_COMMA);
+        std::string objs = this->makeStringArg(TT_COMMA);
 
         this->advance();
-        std::string files = this->makeStringArg(TT_COMMA);
+        std::string cFlags = this->makeStringArg(TT_COMMA);
 
         this->advance();
         std::string out = this->makeStringArg(TT_RPAREN);
@@ -237,8 +244,44 @@ std::vector<std::string> Parser::makeCompileFunc()
         this->advance();
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
-            result.push_back(compiler + " " + flags + " -c " + files);
-            result.push_back(compiler + " *.o -o " + out);
+            result.push_back(compiler + " " + objs + " " + cFlags + " -o " + out);
+            return result;
+        }
+    }
+    return result;
+}
+
+std::vector<std::string> Parser::makeCompileFunc()
+{
+    std::vector<std::string> result;
+    this->advance();
+
+    if(this->currentToken.getType() == TT_LPAREN) {
+        this->advance();
+        std::string compiler = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string objs = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string includes = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string libs = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string cFlags = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string lFlags = this->makeStringArg(TT_COMMA);
+
+        this->advance();
+        std::string out = this->makeStringArg(TT_RPAREN);
+
+        this->advance();
+        if(this->currentToken.getType() == TT_EOL) {
+            this->advance();
+            result.push_back(compiler + " " + objs + " " + includes + " " + libs + " " + cFlags + " " + lFlags + " -o " + out);
             return result;
         }
     }

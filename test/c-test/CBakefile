@@ -1,14 +1,9 @@
-$COMPILER = "gcc";
+$CC = "gcc";
 
-$FILES = "./src/*.c";
+$OBJS = "./src/*.c";
 $OUT = "main";
 
-action clean:
-    del("*.o");
-end
-
 action build:
-    compile($COMPILER, null, $FILES, $OUT);
+    simple_compile($CC, $OBJS, null, $OUT);
     print("Finished.");
-    call("clean");
 end

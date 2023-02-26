@@ -30,6 +30,7 @@ class Parser
         std::string makeCallFunc();
         std::string makeDelFunc();
         std::string makePrintFunc();
+        std::vector<std::string> makeSimpleCompileFunc();
         std::vector<std::string> makeCompileFunc();
 
         bool isKeyToken(std::string value);
