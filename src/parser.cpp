@@ -117,7 +117,11 @@ std::vector<std::string> Parser::makeAction()
                 result.push_back(this->makeDelFunc());
             }
             else if(this->isFuncToken("compile")) {
-                result.push_back(this->makeCompileFunc());
+                std::vector<std::string> blockResult = this->makeCompileFunc();
+
+                for(std::string str : blockResult) {
+                    result.push_back(str);
+                }
             }
             else if(this->isFuncToken("print")) {
                 std::string out  = this->makePrintFunc();
@@ -213,8 +217,9 @@ std::string Parser::makePrintFunc()
     return "NULL";
 }
 
-std::string Parser::makeCompileFunc()
+std::vector<std::string> Parser::makeCompileFunc()
 {
+    std::vector<std::string> result;
     this->advance();
     if(this->currentToken.getType() == TT_LPAREN) {
         this->advance();
@@ -232,13 +237,12 @@ std::string Parser::makeCompileFunc()
         this->advance();
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
-            std::string result;
-            result = compiler + " " + flags + " -c " + files + "\n";
-            result += compiler + " *.o -o " + out;
+            result.push_back(compiler + " " + flags + " -c " + files);
+            result.push_back(compiler + " *.o -o " + out);
             return result;
         }
     }
-    return "NULL";
+    return result;
 }
 
 bool Parser::isKeyToken(std::string value)
