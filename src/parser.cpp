@@ -145,6 +145,7 @@ std::vector<std::string> Parser::makeAction()
                 }
             } else {
                 std::cout << "!!!" << this->currentToken.asString() <<  " " << this->position << std::endl;
+                exit(1);
             }
         }
     }
