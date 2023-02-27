@@ -19,18 +19,19 @@ int main(int argc, char** argv)
     std::string str;
     std::string src;
 
-    if(!file) {
+    if(!file) { // <-- No CBakefile?
         std::cout << "[ERR] No CBakefile located." << std::endl;
         return 1; 
     }
 
-    if(argc <= 1) {
+    if(argc <= 1) { // <-- No action?
         std::cout << "[ERR] No action provided." << std::endl;
         return 1;
     }
 
-    action = argv[1];
+    action = argv[1]; //<-- Sets action equal to arg 1
 
+    /* Reads the CBakefile line by line. */
     while(std::getline(file, str)) {
         src += str + "\n";
     }
