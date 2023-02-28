@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     Parser parse = Parser(lexResult.tokens);
     std::map<std::string, std::vector<std::string>> tree = parse.buildTree();
 
-    for(int i = 0; i < tree.at(action).size(); i++) {
+    for(size_t i = 0; i < tree.at(action).size(); i++) {
         const char *cmd = tree.at(action).at(i).c_str();
         std::system(cmd);
     }

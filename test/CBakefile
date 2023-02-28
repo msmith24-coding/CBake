@@ -1,5 +1,6 @@
 $CC : str = "g++";
-        
+$OUT : str = "main";
+
 $COMPILER_FLAGS : array<str> = [
     "-O2",
     "-Wall",
@@ -11,17 +12,15 @@ $COMPILER_FLAGS : array<str> = [
     "-Wold-style-cast",
     "-Wunused-parameter",
     "-Wuninitialized",
-    "-Winit-self",
+    "-Winit-self"
     "-Wshadow",
     "-Wparentheses",
     "-Wdangling-else"
 ];
 
-$OBJS : array<str> = ["./src/main.cpp", "./src/lexer/*.cpp", "./src/parser/*.cpp", "./src/utils/*.cpp"];
-$OUT : str = "./bin/cbake";
+$OBJS : array<str> = ["main.cpp", "io.cpp"];
 
 action build:
-    print("Running build action...");
     simple_compile($CC, $OBJS, $OUT, $COMPILER_FLAGS);
     print("Finished build action.");
 end

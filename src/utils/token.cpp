@@ -1,4 +1,4 @@
-#include "../includes/token.h"
+#include "../../includes/token.h"
 
 Token::Token(std::string type)
 {

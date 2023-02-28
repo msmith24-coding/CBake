@@ -1,7 +1,7 @@
-#include "../includes/lexer.h"
-#include "../includes/tokentypes.h"
-#include "../includes/keywords.h"
-#include "../includes/functions.h"
+#include "../../includes/lexer.h"
+#include "../../includes/tokentypes.h"
+#include "../../includes/keywords.h"
+#include "../../includes/functions.h"
 
 #include <iostream>
 #include <algorithm>
@@ -11,6 +11,7 @@ Lexer::Lexer(std::string src)
 {
     this->src = src;
     this->pos = -1;
+    this->lineCount = 1;
     this->currentChar = 0;
     this->advance();
 }
@@ -26,6 +27,13 @@ void Lexer::advance() /* Advances to the next character. */
     this->currentChar = 0; 
 }
 
+void Lexer::throwError(std::string message)
+{
+    std::cout << "[ERR] SyntaxError: " << message << std::endl;
+    std::cout << "[ERR] SyntaxError: Line >> " << this->lineCount << std::endl;
+    exit(1);
+}
+
 LexResult Lexer::makeTokens() /* Generates Tokens. */
 {
     std::vector<Token> tokens;
@@ -37,6 +45,7 @@ LexResult Lexer::makeTokens() /* Generates Tokens. */
         }
         else if(this->currentChar == '\n') { /* New line Token */
             tokens.push_back(Token(TT_NL));
+            this->lineCount++;
             this->advance();
         }
         else if(this->currentChar == ';') { /* Checks if the currentChar is a certain token. */
@@ -45,6 +54,22 @@ LexResult Lexer::makeTokens() /* Generates Tokens. */
         }
         else if(this->currentChar == ':') {
             tokens.push_back(Token(TT_THEN));
+            this->advance();
+        }
+        else if(this->currentChar == '<') {
+            tokens.push_back(Token(TT_LTHAN));
+            this->advance();
+        }
+        else if(this->currentChar == '>') {
+            tokens.push_back(Token(TT_GTHAN));
+            this->advance();
+        }
+        else if(this->currentChar == '[') {
+            tokens.push_back(Token(TT_LBRACKET));
+            this->advance();
+        }
+        else if(this->currentChar == ']') {
+            tokens.push_back(Token(TT_RBRACKET));
             this->advance();
         }
         else if(this->currentChar == '+') {
@@ -72,13 +97,15 @@ LexResult Lexer::makeTokens() /* Generates Tokens. */
         else if(this->currentChar == '"') {
             tokens.push_back(this->makeString());
         }
-        else if(this->currentChar == '`') {
-            tokens.push_back(this->makeFormattedString());
+        else if(isdigit(this->currentChar)) {
+
         }
         else if(isalpha(this->currentChar)) {
             tokens.push_back(this->makeWord());
         } else {
-            
+            std::string errorStr = "";
+            errorStr += this->currentChar;
+            this->throwError("Invalid character '" + errorStr + ".");
         }
     }
 
@@ -125,20 +152,6 @@ Token Lexer::makeString()
     return Token(TT_STR, str);
 }
 
-Token Lexer::makeFormattedString()
-{
-    std::string str;
-    this->advance();
-
-    while(this->currentChar != '`') { /* Loops until it reaches the end of the string. */
-        str += this->currentChar;
-        this->advance();
-    }
-
-    this->advance();
-    return Token(TT_FSTR, str);
-}
-
 Token Lexer::makeWord()
 {
     std::string word;
@@ -163,6 +176,28 @@ Token Lexer::makeWord()
     // It's an identified.
     return Token(TT_ID, word);
 
+}
+
+Token Lexer::makeNumber()
+{
+    std::string num;
+    bool isFloat = false;
+    while(isdigit(this->currentChar) || this->currentChar == '.') {
+        if(this->currentChar == '.') {
+            if(isFloat) {
+                this->throwError("Too many decimals.");
+            }
+            isFloat = true;
+            num += '.';
+        } else {
+            num += this->currentChar;
+        }
+        this->advance();
+    }
+    if(isFloat) {
+        return Token(TT_FLOAT, num);
+    }
+    return Token(TT_INT, num);
 }
 
 /* Unused */

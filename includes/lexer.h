@@ -14,7 +14,8 @@ class Lexer
 {
     private:
         std::string src;
-        int pos;
+        size_t pos;
+        int lineCount;
         char currentChar;
     public:
         /* Contructors */
@@ -23,13 +24,14 @@ class Lexer
 
         /* Functions */
         void advance();
+        void throwError(std::string message);
         LexResult makeTokens();
         
         Token makeVariable();
         Token makeEqual();
         Token makeString();
-        Token makeFormattedString();
         Token makeWord();
+        Token makeNumber();
 
         /* Destructors */
         ~Lexer();
