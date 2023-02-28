@@ -11,8 +11,8 @@ class Token
     public:
         /* Contructors */
         Token();
-        Token(std::string type);
-        Token(std::string type, std::string value);
+        Token(std::string type_);
+        Token(std::string type_, std::string value_);
 
         /* Functions */
         std::string asString();
