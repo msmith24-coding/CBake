@@ -1,14 +1,14 @@
 #include "../../includes/token.h"
 
-Token::Token(std::string type)
+Token::Token(std::string type_)
 {
-    this->type = type;
+    this->type = type_;
 }
 
-Token::Token(std::string type, std::string value)
+Token::Token(std::string type_, std::string value_)
 {
-    this->type = type;
-    this->value = value;
+    this->type = type_;
+    this->value = value_;
 }
 
 /* Functions */

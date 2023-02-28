@@ -7,9 +7,9 @@
 #include <algorithm>
 
 /* Constructors */
-Lexer::Lexer(std::string src)
+Lexer::Lexer(std::string src_)
 {
-    this->src = src;
+    this->src = src_;
     this->pos = -1;
     this->lineCount = 1;
     this->currentChar = 0;

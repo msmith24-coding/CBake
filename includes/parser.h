@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <variant>
 
 #include "token.h"
 #include "tokentypes.h"
@@ -20,7 +21,7 @@ class Parser
         Token currentToken;
         Token nextToken;
     public:
-        Parser(std::vector<Token> tokens);
+        Parser(std::vector<Token> tokens_);
 
         std::map<std::string, std::vector<std::string>> buildTree();
 

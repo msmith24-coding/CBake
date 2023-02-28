@@ -20,7 +20,7 @@ class Lexer
     public:
         /* Contructors */
         Lexer();
-        Lexer(std::string src);
+        Lexer(std::string src_);
 
         /* Functions */
         void advance();
