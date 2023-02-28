@@ -73,7 +73,7 @@ void Parser::makeVariable()
                     this->throwError("Expected '='");
                 }
             }
-            else if(this->isKeyToken("array")) { 
+            else if(this->isKeyToken("list")) { 
                 this->advance();
                 if(this->currentToken.getType() == TT_LTHAN) {
                     this->advance();
@@ -86,12 +86,12 @@ void Parser::makeVariable()
                                 if(this->currentToken.getType() == TT_LBRACKET) {
                                     this->advance();
 
-                                    std::vector<std::string> array = this->makeStringArray();
+                                    std::vector<std::string> list = this->makeStringList();
 
                                     this->advance();
                                     if(this->currentToken.getType() == TT_EOL) {
                                         std::string value;
-                                        for(std::string str : array) {
+                                        for(std::string str : list) {
                                             value += str + " ";
                                         }
                                         this->varSymbols.insert({varName, value});
@@ -113,7 +113,7 @@ void Parser::makeVariable()
                     this->throwError("Expected '<'");
                 }
             } else {
-                this->throwError("Expected <str, int, float, array>");
+                this->throwError("Expected <str, int, float, list>");
             }
         } else {
             this->throwError("Expected ':'");

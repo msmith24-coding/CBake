@@ -12,7 +12,7 @@ void setupKeywords()
     keywords.push_back("str");
     keywords.push_back("int");
     keywords.push_back("float");
-    keywords.push_back("array");
+    keywords.push_back("list");
 
     keywords.push_back("null");
 }

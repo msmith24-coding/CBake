@@ -1,7 +1,7 @@
 $CC : str = "g++";
 $OUT : str = "./bin/cbake";
 
-$COMPILER_FLAGS : array<str> = [
+$COMPILER_FLAGS : list<str> = [
     "-O2",
     "-Wall",
     "-Wextra",
@@ -18,7 +18,7 @@ $COMPILER_FLAGS : array<str> = [
     "-Wdangling-else"
 ];
 
-$OBJS : array<str> = [
+$OBJS : list<str> = [
     "./src/main.cpp", 
     "./src/lexer/*.cpp", 
     "./src/parser/*.cpp", 

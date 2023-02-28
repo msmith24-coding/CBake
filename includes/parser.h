@@ -30,7 +30,7 @@ class Parser
         void makeVariable();
 
         std::string makeStringArg(std::string endTokenType);
-        std::vector<std::string> makeStringArray();
+        std::vector<std::string> makeStringList();
         std::vector<std::string> makeAction();
 
         std::vector<std::string> makeRunFunc();

@@ -1,27 +1,32 @@
 #include "../../includes/parser.h"
 
-std::vector<std::string> Parser::makeRunFunc() 
+std::string Parser::makeDelFunc()
 {
-    std::vector<std::string> result;
-
     this->advance();
     if(this->currentToken.getType() == TT_LPAREN) {
         this->advance();
-
-        std::string cmd = this->makeStringArg(TT_RPAREN);
-        if(cmd.empty()) {
-            this->throwError("run -> (cmd).");
-        }
-
+        std::string arg0 = this->makeStringArg(TT_RPAREN);
         this->advance();
         if(this->currentToken.getType() == TT_EOL) {
             this->advance();
-            result.push_back(cmd);
+
+            #ifdef _WIN32
+                return "del " + arg0;
+            #endif
+
+            #ifdef __APPLE__
+                return "rm -rf " + arg0;
+            #endif
+
+            #ifdef __linux__
+                return "rm -rf " + arg0;
+            #endif
+
         } else {
             this->throwError("Expected ';'");
         }
     } else {
         this->throwError("Expected '('");
     }
-    return result;
+    return "NULL";
 }
