@@ -1,10 +1,4 @@
 #include "../../includes/lexer.h"
-#include "../../includes/tokentypes.h"
-#include "../../includes/keywords.h"
-#include "../../includes/functions.h"
-
-#include <iostream>
-#include <algorithm>
 
 /* Constructors */
 Lexer::Lexer(std::string src_)
@@ -16,25 +10,7 @@ Lexer::Lexer(std::string src_)
     this->advance();
 }
 
-/* Functions */
-void Lexer::advance() /* Advances to the next character. */
-{
-    this->pos++;
-    if(this->pos < this->src.length()) { /* Checks if the pos is within the size of the source. */
-        this->currentChar = this->src.at(this->pos); // <-- Update the current character.
-        return;
-    }
-    this->currentChar = 0; 
-}
-
-void Lexer::throwError(std::string message)
-{
-    std::cout << "[ERR] SyntaxError: " << message << std::endl;
-    std::cout << "[ERR] SyntaxError: Line >> " << this->lineCount << std::endl;
-    exit(1);
-}
-
-LexResult Lexer::makeTokens() /* Generates Tokens. */
+LexResult Lexer::buildTokens() /* Generates Tokens. */
 {
     std::vector<Token> tokens;
     LexResult result;
@@ -114,90 +90,6 @@ LexResult Lexer::makeTokens() /* Generates Tokens. */
     result.tokens = tokens;
 
     return result;
-}
-
-Token Lexer::makeVariable()
-{
-    this->advance();
-    std::string varName;
-    /* Checks if the character is valid and is not a space. */
-    while((isalpha(this->currentChar) || this->currentChar == '_') && (this->currentChar != ' ')) {
-        varName += this->currentChar; // <-- Adds to the varName
-        this->advance();
-    }
-
-    return Token(TT_VAR, varName); // <-- Returns the result.
-}
-
-Token Lexer::makeEqual() /* Returns if it is a = or == */
-{
-    this->advance();
-    if(this->currentChar == '=') {
-        return Token(TT_EQEQ);
-    }
-    return Token(TT_EQ);
-}
-
-Token Lexer::makeString() 
-{
-    std::string str;
-    this->advance();
-
-    while(this->currentChar != '"') { /* Loops until it reaches the end of the string. */
-        str += this->currentChar;
-        this->advance();
-    }
-
-    this->advance();
-    return Token(TT_STR, str);
-}
-
-Token Lexer::makeWord()
-{
-    std::string word;
-    while(isalpha(this->currentChar) || this->currentChar == '_') { /* Is the character valid. */
-        word += this->currentChar;
-        this->advance();
-    }
-
-    bool isKeyword = std::find(keywords.begin(), keywords.end(), word) != keywords.end();
-    bool isFunction = std::find(functions.begin(), functions.end(), word) != functions.end();
-
-    /* Is a keyword? */
-    if(isKeyword) {
-        return Token(TT_KEY, word);
-    }
-
-    /* Is a function? */
-    if(isFunction) {
-        return Token(TT_FUNC, word);
-    }
-
-    // It's an identified.
-    return Token(TT_ID, word);
-
-}
-
-Token Lexer::makeNumber()
-{
-    std::string num;
-    bool isFloat = false;
-    while(isdigit(this->currentChar) || this->currentChar == '.') {
-        if(this->currentChar == '.') {
-            if(isFloat) {
-                this->throwError("Too many decimals.");
-            }
-            isFloat = true;
-            num += '.';
-        } else {
-            num += this->currentChar;
-        }
-        this->advance();
-    }
-    if(isFloat) {
-        return Token(TT_FLOAT, num);
-    }
-    return Token(TT_INT, num);
 }
 
 /* Unused */

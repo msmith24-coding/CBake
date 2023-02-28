@@ -2,8 +2,13 @@
 #define LEXER_H_
 
 #include <vector>
+#include <algorithm>
+#include <iostream>
 
 #include "token.h"
+#include "tokentypes.h"
+#include "keywords.h"
+#include "functions.h"
 
 struct LexResult
 {
@@ -25,7 +30,7 @@ class Lexer
         /* Functions */
         void advance();
         void throwError(std::string message);
-        LexResult makeTokens();
+        LexResult buildTokens();
         
         Token makeVariable();
         Token makeEqual();

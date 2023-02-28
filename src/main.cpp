@@ -37,7 +37,7 @@ int main(int argc, char** argv)
     }
     
     Lexer lex = Lexer(src);
-    LexResult lexResult = lex.makeTokens();
+    LexResult lexResult = lex.buildTokens();
 
     // for(Token token : lexResult.tokens) {
     //     std::cout << token.asString() << " ";
