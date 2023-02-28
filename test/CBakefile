@@ -21,6 +21,7 @@ $COMPILER_FLAGS : array<str> = [
 $OBJS : array<str> = ["main.cpp", "io.cpp"];
 
 action build:
+    print("Running build action...");
     simple_compile($CC, $OBJS, $OUT, $COMPILER_FLAGS);
     print("Finished build action.");
 end
