@@ -1,31 +1,46 @@
 #include "../../includes/token.h"
 
-Token::Token(std::string type_)
+// +
+// | Sets up a token without a value.
+// +
+Token::Token(TokenType type_)
 {
     this->type = type_;
 }
 
-Token::Token(std::string type_, std::string value_)
+// +
+// | Sets up a token with a value.
+// +
+Token::Token(TokenType type_, std::string value_)
 {
     this->type = type_;
     this->value = value_;
 }
 
-/* Functions */
+// +
+// | Returns a formatted string to display
+// | the token in a nice way.
+// +
 std::string Token::asString()
 {
     if(!this->value.empty()) {
-        return "[" + this->type + ":" + this->value + "]";
+        return "[" + TokenAsString(this->type) + ":" + this->value + "]";
     }
-    return "[" + this->type + "]";
+    return "[" + TokenAsString(this->type) + "]";
 }
 
-/* Getters */
-std::string Token::getType()
+// +
+// | Returns the type.
+// +
+TokenType Token::getType()
 {
     return this->type;
 }
 
+// +
+// | Returns the value only if there
+// | is a value to return. 
+// +
 std::string Token::getValue()
 {
     if(!this->value.empty()) {

@@ -1,12 +1,16 @@
 #include "../../includes/parser.h"
 
+// + 
+// | Loops until it reaches an end and adds command line output to 
+// | a vector for processing later if said action is called from command line.
+// +
 std::vector<std::string> Parser::makeAction()
 {
     std::vector<std::string> result;
-    if(this->currentToken.getType() == TT_THEN) {
+    if(this->currentToken.getType() == TokenType::THEN) {
         this->advance();
         while(!this->isKeyToken("end")) {
-            if(this->currentToken.getType() == TT_NL) {
+            if(this->currentToken.getType() == TokenType::NEW_LINE) {
                 this->currentLine++;
                 this->advance();
             }
@@ -31,8 +35,8 @@ std::vector<std::string> Parser::makeAction()
                 }
             }
             else if(this->isFuncToken("print")) {
-                std::string out = this->makePrintFunc();
-                result.push_back("echo " + out);
+                std::string printResult = this->makePrintFunc();
+                result.push_back(printResult);
             }
             else if(this->isFuncToken("call")) {
                 std::string actionToCall = this->makeCallFunc();

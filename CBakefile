@@ -27,6 +27,6 @@ $OBJS : list<str> = [
 
 action build:
     print("Running build action...");
-    simple_compile($CC, $OBJS, $OUT, $COMPILER_FLAGS);
+    simple_compile($CC, $OBJS, $COMPILER_FLAGS, $OUT);
     print("Finished build action.");
 end

@@ -11,7 +11,7 @@ void Lexer::advance()
     if(this->pos < this->src.length()) { 
         this->currentChar = this->src.at(this->pos); 
     } else {
-        this->currentChar = 0; 
+        this->currentChar = 0;
     }
 }
 
@@ -23,6 +23,6 @@ void Lexer::advance()
 void Lexer::throwError(std::string message)
 {
     std::cout << "[ERR] LexerError: " << message << std::endl;
-    std::cout << "[ERR] LexerError: Line >> " << this->lineCount << std::endl;
-    exit(1);
+    std::cout << "                : Line >> " << this->lineCount << std::endl;
+    exit(1); //<-- (Michael): Research if using exit is bad practice. 
 }

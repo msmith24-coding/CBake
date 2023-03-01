@@ -1,15 +1,21 @@
 #include "../../includes/parser.h"
 
+// + 
+// | Builds the command for outputting
+// | to command line.
+// +
 std::string Parser::makePrintFunc()
 {
     this->advance();
-    if(this->currentToken.getType() == TT_LPAREN) {
+    if(this->currentToken.getType() == TokenType::LPAREN) {
         this->advance();
-        std::string arg0 = this->makeStringArg(TT_RPAREN);
+        std::string out = this->makeStringArg(TokenType::RPAREN);
         this->advance();
-        if(this->currentToken.getType() == TT_EOL) {
+        if(this->currentToken.getType() == TokenType::END_OF_LINE) {
             this->advance();
-            return arg0;
+            
+            //TODO: May need to make compatible for a different OS (Michael)
+            return "echo " + out;
         } else {
             this->throwError("Expected ';'");
         }

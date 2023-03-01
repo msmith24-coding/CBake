@@ -1,19 +1,23 @@
 #include "../../includes/parser.h"
 
-std::string Parser::makeStringArg(std::string endTokenType)
+// + 
+// | Loops and add valid arguments to a string
+// | until it reaches a certain end token.
+// +
+std::string Parser::makeStringArg(TokenType endTokenType)
 {
     std::string result;
     while(this->currentToken.getType() != endTokenType) {
-        if(this->currentToken.getType() == TT_STR) {
+        if(this->currentToken.getType() == TokenType::STR) {
             result += this->currentToken.getValue();
             this->advance();
         }
-        else if(this->currentToken.getType() == TT_VAR) {
+        else if(this->currentToken.getType() == TokenType::VAR) {
             if(this->varSymbols.count(this->currentToken.getValue())) {
                 if(std::holds_alternative<std::string>(this->varSymbols.at(this->currentToken.getValue()))) {
                     result += std::get<std::string>(this->varSymbols.at(this->currentToken.getValue()));
                 } else {
-                    this->throwError("Invalid type '" + this->currentToken.getType() + "'");
+                    this->throwError("Invalid type '" + TokenAsString(this->currentToken.getType()) + "'");
                 }
                 this->advance();
             } else {
@@ -24,11 +28,11 @@ std::string Parser::makeStringArg(std::string endTokenType)
             result += "";
             this->advance();
         }
-        else if(this->currentToken.getType() == TT_PLUS) {
+        else if(this->currentToken.getType() == TokenType::PLUS) {
             result += "";
             this->advance();
         } else {
-            this->throwError("Expected '" + endTokenType + "'");
+            this->throwError("Expected '" + TokenAsString(endTokenType) + "'");
         }
     }
     return result;
