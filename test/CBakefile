@@ -18,7 +18,10 @@ $COMPILER_FLAGS : list<str> = [
     "-Wdangling-else"
 ];
 
-$OBJS : list<str> = ["main.cpp", "io.cpp"];
+$OBJS : list<str> = [
+    "main.cpp", 
+    "./src/io.cpp"
+];
 
 action build:
     print("Running build action...");
