@@ -10,4 +10,5 @@ void setupFunctions()
     functions.push_back("run");
     functions.push_back("print");
     functions.push_back("simple_compile");
+    functions.push_back("compile");
 }
