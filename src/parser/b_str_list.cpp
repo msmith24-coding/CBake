@@ -1,5 +1,10 @@
 #include "../../includes/parser.h"
 
+// +
+// | A variable type that has multiple
+// | string values. A list combines all the
+// | values into a singular string. 
+// +
 std::vector<std::string> Parser::makeStringList()
 {
     std::vector<std::string> result;

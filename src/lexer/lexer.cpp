@@ -87,6 +87,7 @@ LexResult Lexer::buildTokens()
         else if(isalpha(this->currentChar)) {
             tokens.push_back(this->makeWord());
         } else {
+            //TODO (Michael): Implement an object for better error handling.
             std::string errorStr = "";
             errorStr += this->currentChar;
             this->throwError("Invalid character '" + errorStr + ".");

@@ -1,5 +1,9 @@
 #include "../../includes/parser.h"
 
+// + 
+// | Loops and add valid arguments to a string
+// | until it reaches a certain end token.
+// +
 std::string Parser::makeStringArg(TokenType endTokenType)
 {
     std::string result;

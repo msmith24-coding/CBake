@@ -1,10 +1,16 @@
 #include "../../includes/token.h"
 
+// +
+// | Sets up a token without a value.
+// +
 Token::Token(TokenType type_)
 {
     this->type = type_;
 }
 
+// +
+// | Sets up a token with a value.
+// +
 Token::Token(TokenType type_, std::string value_)
 {
     this->type = type_;
