@@ -1,28 +1,49 @@
 #include "../../includes/tokentypes.h"
 
-const std::string TT_EOF = "EOF";
-const std::string TT_EOL = "EOL";
-const std::string TT_NL = "NL";
+// +
+// | A function to format a token name to a string.
+// +
+std::string TokenAsString(TokenType type_)
+{
+    switch(type_)
+    {
+        /* Formatting Tokens */
+        case TokenType::END_OF_FILE : return "END_OF_FILE";
+        case TokenType::END_OF_LINE : return "END_OF_LINE";
+        case TokenType::NEW_LINE    : return "NEW_LINE";
 
-const std::string TT_PLUS = "PLUS";
-const std::string TT_LPAREN = "LPAREN";
-const std::string TT_RPAREN = "RPAREN";
-const std::string TT_GTHAN = "GTHAN";
-const std::string TT_LTHAN = "LTHAN";
-const std::string TT_LBRACKET = "LBRACKET";
-const std::string TT_RBRACKET = "RBRACKET";
+        /* Mathimatical Tokens */
+        case TokenType::PLUS        : return "PLUS";
+        case TokenType::MINUS       : return "MINUS";
+        case TokenType::MUL         : return "MUL";
+        case TokenType::DIV         : return "DIV";
 
-const std::string TT_EQ = "EQ";
-const std::string TT_EQEQ = "EQEQ";
-const std::string TT_THEN = "THEN";
-const std::string TT_COMMA = "COMMA";
+        /* Parentheses, Brackets, Less Than & Greater Than */
+        case TokenType::LPAREN      : return "LPAREN";
+        case TokenType::RPAREN      : return "RPAREN";
+        case TokenType::LBRACKET    : return "LBRACKET";
+        case TokenType::RBRACKET    : return "RBRACKET";
+        case TokenType::LTHAN       : return "LTHAN";
+        case TokenType::GTHAN       : return "GTHAN";
 
-const std::string TT_VAR = "VAR";
+        /* Synbols Tokens */
+        case TokenType::EQ          : return "EQ";
+        case TokenType::EQEQ        : return "EQEQ";
+        case TokenType::THEN        : return "THEN";
+        case TokenType::COMMA       : return "COMMA";
 
-const std::string TT_STR = "STR";
-const std::string TT_INT = "INT";
-const std::string TT_FLOAT = "FLOAT";
+        /* Type Tokens */
+        case TokenType::STR         : return "STR";
+        case TokenType::INT         : return "INT";
+        case TokenType::FLOAT       : return "FLOAT";
 
-const std::string TT_KEY = "KEY";
-const std::string TT_FUNC = "FUNC";
-const std::string TT_ID = "ID";
+        /* Utility Tokens */
+        case TokenType::KEY         : return "KEY";
+        case TokenType::FUNC        : return "FUNC";
+        case TokenType::ID          : return "ID";
+        case TokenType::VAR         : return "VAR";
+
+        default: 
+            return "INVALID TOKEN TYPE";
+    }
+}

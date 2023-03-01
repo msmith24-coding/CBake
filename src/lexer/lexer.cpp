@@ -28,48 +28,48 @@ LexResult Lexer::buildTokens()
             this->advance();
         }
         else if(this->checkCharacter('\n')) { 
-            tokens.push_back(Token(TT_NL));
+            tokens.push_back(Token(TokenType::NEW_LINE));
             this->lineCount++;
             this->advance();
         }
         else if(this->checkCharacter(';')) { 
-            tokens.push_back(Token(TT_EOL)); 
+            tokens.push_back(Token(TokenType::END_OF_LINE)); 
             this->advance(); 
         }
         else if(this->checkCharacter(':')) {
-            tokens.push_back(Token(TT_THEN));
+            tokens.push_back(Token(TokenType::THEN));
             this->advance();
         }
         else if(this->checkCharacter('<')) {
-            tokens.push_back(Token(TT_LTHAN));
+            tokens.push_back(Token(TokenType::LTHAN));
             this->advance();
         }
         else if(this->checkCharacter('>')) {
-            tokens.push_back(Token(TT_GTHAN));
+            tokens.push_back(Token(TokenType::GTHAN));
             this->advance();
         }
         else if(this->checkCharacter('[')) {
-            tokens.push_back(Token(TT_LBRACKET));
+            tokens.push_back(Token(TokenType::LBRACKET));
             this->advance();
         }
         else if(this->checkCharacter(']')) {
-            tokens.push_back(Token(TT_RBRACKET));
+            tokens.push_back(Token(TokenType::RBRACKET));
             this->advance();
         }
         else if(this->checkCharacter('+')) {
-            tokens.push_back(Token(TT_PLUS));
+            tokens.push_back(Token(TokenType::PLUS));
             this->advance();
         }
         else if(this->checkCharacter(',')) {
-            tokens.push_back(Token(TT_COMMA));
+            tokens.push_back(Token(TokenType::COMMA));
             this->advance();
         }
         else if(this->checkCharacter('(')) {
-            tokens.push_back(Token(TT_LPAREN));
+            tokens.push_back(Token(TokenType::LPAREN));
             this->advance();
         }
         else if(this->checkCharacter(')')) {
-            tokens.push_back(Token(TT_RPAREN));
+            tokens.push_back(Token(TokenType::RPAREN));
             this->advance();
         }
         else if(this->isVariable()) {
@@ -93,7 +93,7 @@ LexResult Lexer::buildTokens()
         }
     }
 
-    tokens.push_back(Token(TT_EOF));
+    tokens.push_back(Token(TokenType::END_OF_FILE));
 
     result.tokens = tokens;
 

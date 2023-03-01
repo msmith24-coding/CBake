@@ -2,7 +2,7 @@
 
 bool Parser::isKeyToken(std::string value)
 {
-    if(Parser::currentToken.getType() == TT_KEY) {
+    if(Parser::currentToken.getType() == TokenType::KEY) {
         return Parser::currentToken.getValue() == value;
     }
     return false;
@@ -10,7 +10,7 @@ bool Parser::isKeyToken(std::string value)
 
 bool Parser::isFuncToken(std::string func)
 {
-    if(Parser::currentToken.getType() == TT_FUNC) {
+    if(Parser::currentToken.getType() == TokenType::FUNC) {
         return Parser::currentToken.getValue() == func;
     }
     return false;
@@ -18,10 +18,10 @@ bool Parser::isFuncToken(std::string func)
 
 bool Parser::isVarToken()
 {
-    return this->currentToken.getType() == TT_VAR;
+    return this->currentToken.getType() == TokenType::VAR;
 }
 
 bool Parser::isNewLineToken()
 {
-    return this->currentToken.getType() == TT_NL;
+    return this->currentToken.getType() == TokenType::NEW_LINE;
 }

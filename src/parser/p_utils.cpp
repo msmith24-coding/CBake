@@ -4,7 +4,7 @@ void Parser::advance()
 {
     this->position++;
     this->currentToken = this->tokens.at(this->position);
-    if(this->currentToken.getType() != TT_EOF) {
+    if(this->currentToken.getType() != TokenType::END_OF_FILE) {
         this->nextToken = this->tokens.at(this->position + 1);
     }
 }

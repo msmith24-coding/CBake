@@ -13,7 +13,7 @@ Token Lexer::makeVariable()
         this->advance();
     }
 
-    return Token(TT_VAR, varName);
+    return Token(TokenType::VAR, varName);
 }
 
 // + 
@@ -24,9 +24,9 @@ Token Lexer::makeEqual()
 {
     this->advance();
     if(this->currentChar == '=') {
-        return Token(TT_EQEQ);
+        return Token(TokenType::EQEQ);
     }
-    return Token(TT_EQ);
+    return Token(TokenType::EQ);
 }
 
 // +
@@ -45,7 +45,7 @@ Token Lexer::makeString()
     }
 
     this->advance();
-    return Token(TT_STR, str);
+    return Token(TokenType::STR, str);
 }
 
 // + 
@@ -66,15 +66,15 @@ Token Lexer::makeWord()
     bool isFunction = std::find(functions.begin(), functions.end(), word) != functions.end();
 
     if(isKeyword) {
-        return Token(TT_KEY, word);
+        return Token(TokenType::KEY, word);
     }
 
     if(isFunction) {
-        return Token(TT_FUNC, word);
+        return Token(TokenType::FUNC, word);
     }
 
     // It's an identified.
-    return Token(TT_ID, word);
+    return Token(TokenType::ID, word);
 
 }
 
@@ -100,7 +100,7 @@ Token Lexer::makeNumber()
         this->advance();
     }
     if(isFloat) {
-        return Token(TT_FLOAT, num);
+        return Token(TokenType::FLOAT, num);
     }
-    return Token(TT_INT, num);
+    return Token(TokenType::INT, num);
 }

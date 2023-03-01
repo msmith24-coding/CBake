@@ -2,23 +2,24 @@
 #define TOKEN_H_
 
 #include <string>
+#include "tokentypes.h"
 
 class Token
 {
     private:
-        std::string type;
+        TokenType type;
         std::string value;
     public:
         /* Contructors */
         Token();
-        Token(std::string type_);
-        Token(std::string type_, std::string value_);
+        Token(TokenType type_);
+        Token(TokenType type_, std::string value_);
 
         /* Functions */
         std::string asString();
 
         /* Getters */
-        std::string getType();
+        TokenType getType();
         std::string getValue();
 
         /* Destructors */

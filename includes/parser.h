@@ -29,7 +29,7 @@ class Parser
         void throwError(std::string message);
         void makeVariable();
 
-        std::string makeStringArg(std::string endTokenType);
+        std::string makeStringArg(TokenType endTokenType);
         std::vector<std::string> makeStringList();
         std::vector<std::string> makeAction();
 

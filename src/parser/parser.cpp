@@ -10,7 +10,7 @@ Parser::Parser(std::vector<Token> tokens_)
 
 std::map<std::string, std::vector<std::string>> Parser::buildTree()
 {
-    while(this->currentToken.getType() != TT_EOF) {
+    while(this->currentToken.getType() != TokenType::END_OF_FILE) {
         //std::cout << this->currentToken.asString() << std::endl;
         if(this->isNewLineToken()) {
             this->currentLine++;
@@ -21,7 +21,7 @@ std::map<std::string, std::vector<std::string>> Parser::buildTree()
         }
         else if(this->isKeyToken("action")) {
             this->advance();
-            if(this->currentToken.getType() == TT_ID) {
+            if(this->currentToken.getType() == TokenType::ID) {
                 std::string actionName = this->currentToken.getValue();
                 this->advance();
                 std::vector<std::string> body = this->makeAction();

@@ -3,10 +3,10 @@
 std::vector<std::string> Parser::makeAction()
 {
     std::vector<std::string> result;
-    if(this->currentToken.getType() == TT_THEN) {
+    if(this->currentToken.getType() == TokenType::THEN) {
         this->advance();
         while(!this->isKeyToken("end")) {
-            if(this->currentToken.getType() == TT_NL) {
+            if(this->currentToken.getType() == TokenType::NEW_LINE) {
                 this->currentLine++;
                 this->advance();
             }

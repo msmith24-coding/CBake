@@ -3,11 +3,11 @@
 std::string Parser::makeCallFunc()
 {
     this->advance();
-    if(this->currentToken.getType() == TT_LPAREN) {
+    if(this->currentToken.getType() == TokenType::LPAREN) {
         this->advance();
-        std::string arg0 = this->makeStringArg(TT_RPAREN);
+        std::string arg0 = this->makeStringArg(TokenType::RPAREN);
         this->advance();
-        if(this->currentToken.getType() == TT_EOL) {
+        if(this->currentToken.getType() == TokenType::END_OF_LINE) {
             this->advance();
             return arg0;
         } else {
