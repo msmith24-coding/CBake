@@ -39,6 +39,7 @@ class Parser
         std::string makePrintFunc();
         std::vector<std::string> makeSimpleCompileFunc();
         std::vector<std::string> makeCompileFunc();
+        std::vector<std::string> makeUnitTestFunc();
 
         bool isKeyToken(std::string value);
         bool isFuncToken(std::string func);

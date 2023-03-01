@@ -38,6 +38,13 @@ std::vector<std::string> Parser::makeAction()
             else if(this->isFuncToken("del")) {
                 result.push_back(this->makeDelFunc());
             }
+            else if(this->isFuncToken("unit_test")) {
+                std::vector<std::string> blockResult = this->makeUnitTestFunc();
+
+                for(std::string str : blockResult) {
+                    result.push_back(str);
+                }
+            }
             else if(this->isFuncToken("simple_compile")) {
                 std::vector<std::string> blockResult = this->makeSimpleCompileFunc();
 
