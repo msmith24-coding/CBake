@@ -38,6 +38,10 @@ class Lexer
         Token makeWord();
         Token makeNumber();
 
+        bool shouldIgnoreCharacter();
+        bool checkCharacter(char toCheck);
+        bool isVariable();
+
         /* Destructors */
         ~Lexer();
 };

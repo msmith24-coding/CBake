@@ -11,7 +11,7 @@ void Parser::advance()
 
 void Parser::throwError(std::string message)
 {
-    std::cout << "[ERR] SyntaxError: " << message << std::endl;
-    std::cout << "[ERR] SyntaxError: Line >> " << this->currentLine << std::endl;
+    std::cout << "[ERR] ParserError: " << message << std::endl;
+    std::cout << "[ERR] ParserError: Line >> " << this->currentLine << std::endl;
     exit(1);
 }

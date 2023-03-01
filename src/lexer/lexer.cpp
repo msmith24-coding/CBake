@@ -1,6 +1,9 @@
 #include "../../includes/lexer.h"
 
-/* Constructors */
+// +
+// | Sets default values for the lexer.
+// | Advances to the first token.
+// +
 Lexer::Lexer(std::string src_)
 {
     this->src = src_;
@@ -10,61 +13,66 @@ Lexer::Lexer(std::string src_)
     this->advance();
 }
 
-LexResult Lexer::buildTokens() /* Generates Tokens. */
+// +
+// | Loops while there is a character.
+// | Advances after the token has been added
+// | to the tokens vector.
+// +
+LexResult Lexer::buildTokens()
 {
     std::vector<Token> tokens;
     LexResult result;
 
-    while(this->currentChar != 0) { /* Loop until no more characters. */
-        if(this->currentChar == ' ' || this->currentChar == '\t') { /* Ignore spaces and tabs */
+    while(this->currentChar != 0) { 
+        if(this->shouldIgnoreCharacter()) { 
             this->advance();
         }
-        else if(this->currentChar == '\n') { /* New line Token */
+        else if(this->checkCharacter('\n')) { 
             tokens.push_back(Token(TT_NL));
             this->lineCount++;
             this->advance();
         }
-        else if(this->currentChar == ';') { /* Checks if the currentChar is a certain token. */
-            tokens.push_back(Token(TT_EOL)); // <-- Adds the token to a tokens vector.
-            this->advance(); // <-- Advance to next character.
+        else if(this->checkCharacter(';')) { 
+            tokens.push_back(Token(TT_EOL)); 
+            this->advance(); 
         }
-        else if(this->currentChar == ':') {
+        else if(this->checkCharacter(':')) {
             tokens.push_back(Token(TT_THEN));
             this->advance();
         }
-        else if(this->currentChar == '<') {
+        else if(this->checkCharacter('<')) {
             tokens.push_back(Token(TT_LTHAN));
             this->advance();
         }
-        else if(this->currentChar == '>') {
+        else if(this->checkCharacter('>')) {
             tokens.push_back(Token(TT_GTHAN));
             this->advance();
         }
-        else if(this->currentChar == '[') {
+        else if(this->checkCharacter('[')) {
             tokens.push_back(Token(TT_LBRACKET));
             this->advance();
         }
-        else if(this->currentChar == ']') {
+        else if(this->checkCharacter(']')) {
             tokens.push_back(Token(TT_RBRACKET));
             this->advance();
         }
-        else if(this->currentChar == '+') {
+        else if(this->checkCharacter('+')) {
             tokens.push_back(Token(TT_PLUS));
             this->advance();
         }
-        else if(this->currentChar == ',') {
+        else if(this->checkCharacter(',')) {
             tokens.push_back(Token(TT_COMMA));
             this->advance();
         }
-        else if(this->currentChar == '(') {
+        else if(this->checkCharacter('(')) {
             tokens.push_back(Token(TT_LPAREN));
             this->advance();
         }
-        else if(this->currentChar == ')') {
+        else if(this->checkCharacter(')')) {
             tokens.push_back(Token(TT_RPAREN));
             this->advance();
         }
-        else if(this->currentChar == '$') {
+        else if(this->isVariable()) {
             tokens.push_back(this->makeVariable());
         } 
         else if(this->currentChar == '=') {
