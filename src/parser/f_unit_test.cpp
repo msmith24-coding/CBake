@@ -53,7 +53,9 @@ std::vector<std::string> Parser::makeUnitTestFunc()
 
             /* Is the OS a Linux flavor? */
             #ifdef __linux__
-                //TODO
+                result.push_back("./" + exe + " > " + outFile);
+                result.push_back("diff " + outFile + " " + testFile + " > /dev/null 2>&1; error=$?; if [ $error -eq 0 ]; then echo \"[" + testFile + "] Test passed!\"; else echo \"[" + testFile + "] Test failed.\"; fi;");
+                result.push_back("rm -f " + outFile);
             #endif
 
             return result;
