@@ -23,6 +23,13 @@ std::vector<std::string> Parser::makeAction()
                     result.push_back(str);
                 }
             }
+            else if(this->isFuncToken("compile")) {
+                std::vector<std::string> blockResult = this->makeCompileFunc();
+
+                for(std::string str : blockResult) {
+                    result.push_back(str);
+                }
+            }
             else if(this->isFuncToken("print")) {
                 std::string out = this->makePrintFunc();
                 result.push_back("echo " + out);
