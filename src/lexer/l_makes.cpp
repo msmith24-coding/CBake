@@ -1,20 +1,26 @@
 #include "../../includes/lexer.h"
 
-
+// +
+// | Builds the variable name.
+// | Returns a variable token with the value of the name.
+// +
 Token Lexer::makeVariable()
 {
     this->advance();
     std::string varName;
-    /* Checks if the character is valid and is not a space. */
     while((isalpha(this->currentChar) || this->currentChar == '_') && (this->currentChar != ' ')) {
-        varName += this->currentChar; // <-- Adds to the varName
+        varName += this->currentChar;
         this->advance();
     }
 
-    return Token(TT_VAR, varName); // <-- Returns the result.
+    return Token(TT_VAR, varName);
 }
 
-Token Lexer::makeEqual() /* Returns if it is a = or == */
+// + 
+// | Checks if the next character is also an equal sign.
+// | Return the EQEQ or EQ based if it is == or =
+// + 
+Token Lexer::makeEqual() 
 {
     this->advance();
     if(this->currentChar == '=') {
@@ -23,6 +29,11 @@ Token Lexer::makeEqual() /* Returns if it is a = or == */
     return Token(TT_EQ);
 }
 
+// +
+// | Loops until the character is a quote.
+// | Adds any character found between the two quotes.
+// | Returns a String token with the value it built between the quotes.
+// +
 Token Lexer::makeString() 
 {
     std::string str;
@@ -37,10 +48,16 @@ Token Lexer::makeString()
     return Token(TT_STR, str);
 }
 
+// + 
+// | Loops while the character is valid.
+// | Build a word if it's valid.
+// | Check if it is a key or built in func.
+// | Return the type.
+// +
 Token Lexer::makeWord()
 {
     std::string word;
-    while(isalpha(this->currentChar) || this->currentChar == '_') { /* Is the character valid. */
+    while((isalpha(this->currentChar) || this->currentChar == '_') && this->currentChar != ' ') { /* Is the character valid. */
         word += this->currentChar;
         this->advance();
     }
@@ -48,12 +65,10 @@ Token Lexer::makeWord()
     bool isKeyword = std::find(keywords.begin(), keywords.end(), word) != keywords.end();
     bool isFunction = std::find(functions.begin(), functions.end(), word) != functions.end();
 
-    /* Is a keyword? */
     if(isKeyword) {
         return Token(TT_KEY, word);
     }
 
-    /* Is a function? */
     if(isFunction) {
         return Token(TT_FUNC, word);
     }
@@ -63,6 +78,11 @@ Token Lexer::makeWord()
 
 }
 
+// +
+// | Loops until it is no longer a number or  decimal.
+// | Checks if there is a decimal -> return a float or
+// | return an int.
+// +
 Token Lexer::makeNumber()
 {
     std::string num;
