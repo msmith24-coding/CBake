@@ -28,3 +28,9 @@ action build:
     simple_compile($CC, $OBJS, $COMPILER_FLAGS, $OUT);
     print("Finished build action.");
 end
+
+action test:
+    call("build");
+    print(" ");
+    unit_test($OUT, "test/test1.txt");
+end

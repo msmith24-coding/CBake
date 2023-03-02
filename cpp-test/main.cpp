@@ -2,6 +2,6 @@
 
 int main()
 {
-    println("Hello, World from IO.");
+    println("Hello, World!");
     return 0;
 }
