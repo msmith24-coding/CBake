@@ -18,10 +18,19 @@ $COMPILER_FLAGS : list<str> = [
     "-Wdangling-else"
 ];
 
-$OBJS : list<str> = ["main.cpp", "io.cpp"];
+$OBJS : list<str> = [
+    "main.cpp", 
+    "./src/io.cpp"
+];
 
 action build:
     print("Running build action...");
-    simple_compile($CC, $OBJS, $OUT, $COMPILER_FLAGS);
+    simple_compile($CC, $OBJS, $COMPILER_FLAGS, $OUT);
     print("Finished build action.");
+end
+
+action test:
+    call("build");
+    print(" ");
+    unit_test($OUT, "test/test1.txt");
 end

@@ -29,7 +29,7 @@ class Parser
         void throwError(std::string message);
         void makeVariable();
 
-        std::string makeStringArg(std::string endTokenType);
+        std::string makeStringArg(TokenType endTokenType);
         std::vector<std::string> makeStringList();
         std::vector<std::string> makeAction();
 
@@ -39,6 +39,7 @@ class Parser
         std::string makePrintFunc();
         std::vector<std::string> makeSimpleCompileFunc();
         std::vector<std::string> makeCompileFunc();
+        std::vector<std::string> makeUnitTestFunc();
 
         bool isKeyToken(std::string value);
         bool isFuncToken(std::string func);
