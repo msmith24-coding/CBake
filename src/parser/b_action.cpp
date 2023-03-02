@@ -59,6 +59,13 @@ std::vector<std::string> Parser::makeAction()
                     result.push_back(str);
                 }
             }
+            else if(this->isFuncToken("simple_archive")) {
+                std::vector<std::string> blockResult = this->makeSimpleArchiveFunc();
+
+                for(std::string str : blockResult) {
+                    result.push_back(str);
+                }
+            }
             else if(this->isFuncToken("print")) {
                 std::string printResult = this->makePrintFunc();
                 result.push_back(printResult);
