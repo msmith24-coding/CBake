@@ -21,11 +21,6 @@
 #include <filesystem>
 #include <string>
 
-#include "../includes/lexer.h"
-#include "../includes/parser.h"
-#include "../includes/keywords.h"
-#include "../includes/functions.h"
-
 const bool DEBUG_LEXER = false; 
 const bool DEBUG_PARSER = false;
 
@@ -50,35 +45,12 @@ int main(int argc, char** argv)
 
     action = argv[1]; // <-- Sets the action equal to the first argument after the cbake command. 
 
-    setupKeywords();
-    setupFunctions();
-
     /* Loops the entire file and builds a source code string. */
     while(std::getline(file, str)) {
         src += str + "\n"; // <-- Adds \n at the end to declare a new line.
     }
     
-    Lexer lex = Lexer(src);
-    LexResult lexResult = lex.buildTokens();
+    std::cout << src << std::endl;
 
-    /* Debugging code to output the generated tokens. */
-    if(DEBUG_LEXER) {
-        for(Token token : lexResult.tokens) {
-            std::cout << token.asString() << " ";
-        }
-    }
-    
-    Parser parse = Parser(lexResult.tokens);
-    std::map<std::string, std::vector<std::string>> tree = parse.buildTree();
-
-    for(size_t i = 0; i < tree.at(action).size(); i++) {
-        const char *cmd = tree.at(action).at(i).c_str();
-        /* Debugging code to output the command that is being ran. */
-        if(DEBUG_PARSER) {
-            std::cout << cmd << std::endl;
-        }
-
-        std::system(cmd);
-    }
     return 0; 
 }
