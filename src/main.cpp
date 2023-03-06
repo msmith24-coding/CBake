@@ -21,8 +21,11 @@
 #include <filesystem>
 #include <string>
 
-const bool DEBUG_LEXER = false; 
-const bool DEBUG_PARSER = false;
+#include <lexer.h>
+#include <keywords.h>
+
+const bool FILE_READ_DEBUG = false;
+const bool LEX_RESULT_DEBUG = true;
 
 int main(int argc, char** argv)
 {
@@ -39,18 +42,38 @@ int main(int argc, char** argv)
     }
 
     if(argc <= 1) { 
-        std::cout << "[ERR] No action provided." << std::endl;
+        std::cout << "[ERR] No valid arguments provided." << std::endl;
         return 1;
     }
 
-    action = argv[1]; // <-- Sets the action equal to the first argument after the cbake command. 
+    if(argc == 2) {
+        if((strcmp(argv[1], "--version") == 0) || (strcmp(argv[1], "-v") == 0)) {
+            std::cout << "Currently using - CBake v1.0" << std::endl;
+            std::cout << std::endl;
+            std::cout << "CBake is under the GNU General Public License v3.0" << std::endl;
+            return 0;
+        } else {
+            setupKeywords();
+            action = argv[1]; 
+        }
+    }
 
-    /* Loops the entire file and builds a source code string. */
     while(std::getline(file, str)) {
-        src += str + "\n"; // <-- Adds \n at the end to declare a new line.
+        src += str + "\n"; 
     }
     
-    std::cout << src << std::endl;
+    if(FILE_READ_DEBUG) {
+        std::cout << src << std::endl;
+    }
+
+    Lexer lexer = Lexer(src);
+    LexResult lexResult = lexer.buildTokens();
+
+    if(LEX_RESULT_DEBUG) {
+        for(Token token : lexResult.tokens) {
+            std::cout << token.asString();
+        }
+    }
 
     return 0; 
 }
