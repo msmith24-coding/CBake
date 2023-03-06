@@ -16,30 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef TOKEN_H_
-#define TOKEN_H_
+#include <functions.h>
 
-#include <string>
+std::vector<std::string> functions;
 
-#include <tokentype.h>
-
-class Token
+void setupFunctions()
 {
-    private:
-        TokenType type;
-        std::string value;
-    public:
-        Token(TokenType p_type);
-        Token(TokenType p_type, std::string p_value);
 
-        std::string asString();
-
-        TokenType getType();
-        std::string getValue();
-
-        Token();
-        ~Token();
-};
-
-
-#endif
+}

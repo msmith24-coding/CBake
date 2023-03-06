@@ -18,6 +18,7 @@
 
 #include <lexer.h>
 #include <keywords.h>
+#include <functions.h>
 
 // +
 // | Checks if the next token is also an equal sign. Then
@@ -65,9 +66,14 @@ Token Lexer::makeIDKeyOrFunc()
     }
 
     bool isKeyword = std::find(keywords.begin(), keywords.end(), word) != keywords.end();
+    bool isFunction = std::find(functions.begin(), functions.end(), word) != functions.end();
 
     if(isKeyword) {
         return Token(TokenType::KEY, word);
+    }
+
+    if(isFunction) {
+        return Token(TokenType::FUNC, word);
     }
 
     return Token(TokenType::ID, word);

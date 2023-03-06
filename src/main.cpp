@@ -23,6 +23,7 @@
 
 #include <lexer.h>
 #include <keywords.h>
+#include <functions.h>
 
 const bool FILE_READ_DEBUG = false;
 const bool LEX_RESULT_DEBUG = true;
@@ -48,12 +49,20 @@ int main(int argc, char** argv)
 
     if(argc == 2) {
         if((strcmp(argv[1], "--version") == 0) || (strcmp(argv[1], "-v") == 0)) {
-            std::cout << "Currently using - CBake v1.0" << std::endl;
-            std::cout << std::endl;
+            std::cout << "Currently using CBake v1.0" << std::endl;
+            return 0;
+        }
+        else if((strcmp(argv[1], "--license") == 0) || (strcmp(argv[1], "-l") == 0)) {
             std::cout << "CBake is under the GNU General Public License v3.0" << std::endl;
+            std::cout << std::endl;
+            std::cout << "CBake  Copyright (C) 2023  CBake Foundation" << std::endl;
+            std::cout << "This program comes with ABSOLUTELY NO WARRANTY; for details type `cbake -w`." << std::endl;
+            std::cout << "This is free software, and you are welcome to redistribute it" << std::endl;
+            std::cout << "under certain conditions; type `cbake -c` for details." << std::endl;
             return 0;
         } else {
             setupKeywords();
+            setupFunctions();
             action = argv[1]; 
         }
     }
