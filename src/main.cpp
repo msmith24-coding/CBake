@@ -27,8 +27,8 @@
 #include <functions.h>
 
 const bool FILE_READ_DEBUG = false;
-const bool LEX_RESULT_DEBUG = true;
-const bool PARSE_RESULT_DEBUG = true;
+const bool LEX_RESULT_DEBUG = false;
+const bool PARSE_RESULT_DEBUG = false;
 
 int main(int argc, char** argv)
 {

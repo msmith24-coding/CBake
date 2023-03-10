@@ -24,7 +24,8 @@
 
 enum Functions
 {
-    RUN
+    RUN,
+    PRINT
 };
 
 extern std::vector<std::string> functions;

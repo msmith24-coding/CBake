@@ -54,6 +54,9 @@ void Parser::makeDef()
             if(this->currentToken.getValue() == functions.at(Functions::RUN)) {
                 result.push_back(this->makeRunFunction());
             }
+            else if(this->currentToken.getValue() == functions.at(Functions::PRINT)) {
+                result.push_back(this->makePrintFunction());
+            }
         }
     }
 

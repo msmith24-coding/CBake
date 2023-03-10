@@ -55,6 +55,8 @@ class Parser
         /* parser_function_run.cpp */
         std::string makeRunFunction();
 
+        std::string makePrintFunction();
+
         /* parser_make_const.cpp */
         void makeConst();
 
