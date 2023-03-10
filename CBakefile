@@ -1,1 +1,8 @@
-$PROJECT_NAME = "CBake";
+const PROJECT_NAME = "main";
+const COMPILER = "g++";
+
+const FILES = "./test/main.cpp";
+
+def build:
+    run(COMPILER + " " + FILES + " -o " PROJECT_NAME);
+end

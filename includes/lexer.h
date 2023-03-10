@@ -33,8 +33,8 @@ class Lexer
 {
     private:
         std::string src;
-        unsigned int pos;
-        int currentLine;
+        int pos;
+        unsigned int currentLine;
         char currentChar;
     public:
         /* lexer.cpp */

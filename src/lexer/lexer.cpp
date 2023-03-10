@@ -28,7 +28,7 @@ Lexer::Lexer(std::string p_src)
 {
     this->src = p_src;
     this->pos = -1;
-    this->currentLine = 0;
+    this->currentLine = 1;
     this->currentChar = 0;
 
     this->advance();
@@ -59,6 +59,18 @@ LexResult Lexer::buildTokens()
             tokens.push_back(Token(TokenType::THEN));
             this->advance();
         }
+        else if(this->checkCharacter('+')) {
+            tokens.push_back(Token(TokenType::PLUS));
+            this->advance();
+        }
+        else if(this->checkCharacter('(')) {
+            tokens.push_back(Token(TokenType::LPAREN));
+            this->advance();
+        }
+        else if(this->checkCharacter(')')) {
+            tokens.push_back(Token(TokenType::RPAREN));
+            this->advance();
+        }
         else if(this->checkCharacter('=')) {
             tokens.push_back(this->makeEqualToken());
             this->advance();
@@ -72,6 +84,7 @@ LexResult Lexer::buildTokens()
         else if(isalpha(this->currentChar)) {
             tokens.push_back(this->makeIDKeyOrFunc());   
         } else {
+            std::cout << this->currentChar << std::endl;
             std::cout << "TOKEN ERROR TODO" << std::endl;
             exit(1);
         }

@@ -22,6 +22,14 @@
 #include <vector>
 #include <string>
 
+enum Keywords
+{
+    DEF,
+    END,
+    CONST,
+    VAR
+};
+
 extern std::vector<std::string> keywords;
 
 void setupKeywords();  

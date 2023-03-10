@@ -43,11 +43,17 @@ bool Lexer::checkCharacter(char p_charToCheck)
     return this->currentChar == p_charToCheck;
 }
 
+// +
+// | Is the character a prefix for a variable?
+// +
 bool Lexer::isVariable()
 {
     return this->currentChar == '$';
 }
 
+// +
+// | Is the character is a double quote?
+// +
 bool Lexer::isString()
 {
     return this->currentChar == '"';

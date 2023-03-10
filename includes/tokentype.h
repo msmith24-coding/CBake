@@ -21,6 +21,9 @@
 
 #include <string>
 
+// +
+// | A list of token types.
+// +
 enum class TokenType 
 {
     END_OF_FILE,
@@ -30,14 +33,19 @@ enum class TokenType
     THEN,
     EQ,
     EQEQ,
+    PLUS,
+    LPAREN,
+    RPAREN,
 
     VAR,
+    CONST,
     STR,
     KEY,
     ID,
     FUNC
 };
 
+/* Functions */
 std::string tokenTypeAsString(TokenType p_type);
 
 #endif

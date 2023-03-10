@@ -22,6 +22,8 @@ std::vector<std::string> keywords;
 
 void setupKeywords()
 {
-    keywords.push_back("action");
+    keywords.push_back("def");
     keywords.push_back("end");
+    keywords.push_back("const");
+    keywords.push_back("var");
 }

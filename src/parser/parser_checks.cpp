@@ -16,11 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <functions.h>
+#include <parser.h>
 
-std::vector<std::string> functions;
-
-void setupFunctions()
+bool Parser::isNewLineToken()
 {
-    functions.push_back("run");
+    return this->currentToken.getType() == TokenType::NEW_LINE;
+}
+
+bool Parser::isKeyToken()
+{
+    return this->currentToken.getType() == TokenType::KEY;
+}
+
+bool Parser::isFuncToken()
+{
+    return this->currentToken.getType() == TokenType::FUNC;
 }

@@ -22,6 +22,11 @@
 #include <vector>
 #include <string>
 
+enum Functions
+{
+    RUN
+};
+
 extern std::vector<std::string> functions;
 
 void setupFunctions();  

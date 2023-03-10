@@ -33,6 +33,10 @@ Token Lexer::makeEqualToken()
     return Token(TokenType::EQ);
 }
 
+// +
+// | Checks if a the character has valid characters for a variable.
+// | Loops and adds the characters to a string to build the variable name.
+// +
 Token Lexer::makeVariableToken()
 {
     this->advance();
@@ -44,6 +48,9 @@ Token Lexer::makeVariableToken()
     return Token(TokenType::VAR, varName);
 }
 
+// +
+// | Loops through all the characters until it reaches another double quote.
+// +
 Token Lexer::makeStringToken()
 {
     this->advance();
@@ -57,6 +64,11 @@ Token Lexer::makeStringToken()
     return Token(TokenType::STR, value);
 }
 
+// +
+// | Builds a word given certain requirements.
+// | Checks if the word is a keyword or a function.
+// | If it is neither, then return an identifier.
+// +
 Token Lexer::makeIDKeyOrFunc()
 {
     std::string word;

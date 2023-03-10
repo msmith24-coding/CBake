@@ -16,11 +16,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <functions.h>
+#include <parser.h>
+#include <iostream>
 
-std::vector<std::string> functions;
-
-void setupFunctions()
+std::string Parser::makeRunFunction()
 {
-    functions.push_back("run");
+    this->advance();
+    if(this->currentToken.getType() != TokenType::LPAREN) {
+        std::cout << "Expected '('" << std::endl;
+        exit(1);
+    }
+
+    this->advance();
+    std::string result = this->makeString(TokenType::RPAREN);
+
+    if(this->currentToken.getType() != TokenType::END_OF_LINE) {
+        std::cout << "Expected ';'" << std::endl;
+        exit(1);
+    }
+
+    this->advance();
+    return result;
+
 }

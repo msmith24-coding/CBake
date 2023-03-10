@@ -15,8 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 #include <tokentype.h>
 
+// +
+// | Converts a TokenType into a string 
+// | to output easily.
+// +
 std::string tokenTypeAsString(TokenType p_type)
 {
     switch (p_type)
@@ -24,15 +29,19 @@ std::string tokenTypeAsString(TokenType p_type)
         case TokenType::END_OF_FILE : return "END_OF_FILE";
         case TokenType::END_OF_LINE : return "END_OF_LINE";
         case TokenType::NEW_LINE    : return "NEW_LINE";
+
         case TokenType::THEN        : return "THEN";
         case TokenType::EQ          : return "EQ";
         case TokenType::EQEQ        : return "EQEQ";
-        case TokenType::VAR         : return "VAR";
+        case TokenType::PLUS        : return "PLUS";
+        case TokenType::LPAREN      : return "LPAREN";
+        case TokenType::RPAREN      : return "RPAREN";
+
         case TokenType::STR         : return "STR";
         case TokenType::ID          : return "ID";
         case TokenType::KEY         : return "KEY";
         case TokenType::FUNC        : return "FUNC";      
         default:
-            break;
+            return "Unknown token type.";
     }
 }

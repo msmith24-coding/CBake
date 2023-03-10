@@ -16,11 +16,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <functions.h>
+#include <parser.h>
 
-std::vector<std::string> functions;
-
-void setupFunctions()
+void Parser::makeConst()
 {
-    functions.push_back("run");
+    std::string constName;
+    std::string constValue;
+
+    this->advance();
+    if(this->currentToken.getType() == TokenType::ID) {
+        constName = this->currentToken.getValue();
+        this->advance();
+
+        if(this->currentToken.getType() == TokenType::EQ) {
+            this->advance();
+            
+            constValue = this->makeString(TokenType::END_OF_LINE);
+
+            this->constSymbols.insert({constName, constValue});
+            this->advance();
+        }
+
+    }
 }
+
+

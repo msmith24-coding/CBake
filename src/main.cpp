@@ -22,11 +22,13 @@
 #include <string>
 
 #include <lexer.h>
+#include <parser.h>
 #include <keywords.h>
 #include <functions.h>
 
 const bool FILE_READ_DEBUG = false;
 const bool LEX_RESULT_DEBUG = true;
+const bool PARSE_RESULT_DEBUG = true;
 
 int main(int argc, char** argv)
 {
@@ -79,9 +81,28 @@ int main(int argc, char** argv)
     LexResult lexResult = lexer.buildTokens();
 
     if(LEX_RESULT_DEBUG) {
+        std::cout << "[LEXER DEBUG]" << std::endl;
         for(Token token : lexResult.tokens) {
             std::cout << token.asString();
         }
+    }
+
+    
+    Parser parser = Parser(lexResult.tokens);
+    std::map<std::string, std::vector<std::string>> parseResult = parser.buildTree();
+
+    if(PARSE_RESULT_DEBUG) {
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << "[PARSER DEBUG]" << std::endl;
+        for(std::string cmd : parseResult.at(action)) {
+            std::cout << cmd << std::endl;
+        }
+    }
+
+    for(std::string cmd : parseResult.at(action)) {
+        const char * charCMD = cmd.c_str();
+        system(charCMD);
     }
 
     return 0; 
