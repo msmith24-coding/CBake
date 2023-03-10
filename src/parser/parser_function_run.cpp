@@ -16,30 +16,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/parser.h"
+#include <parser.h>
+#include <iostream>
 
-bool Parser::isKeyToken(std::string value)
+std::string Parser::makeRunFunction()
 {
-    if(Parser::currentToken.getType() == TokenType::KEY) {
-        return Parser::currentToken.getValue() == value;
+    this->advance();
+    if(this->currentToken.getType() != TokenType::LPAREN) {
+        std::cout << "Expected '('" << std::endl;
+        exit(1);
     }
-    return false;
-}
 
-bool Parser::isFuncToken(std::string func)
-{
-    if(Parser::currentToken.getType() == TokenType::FUNC) {
-        return Parser::currentToken.getValue() == func;
+    this->advance();
+    std::string result = this->makeString(TokenType::RPAREN);
+
+    if(this->currentToken.getType() != TokenType::END_OF_LINE) {
+        std::cout << "Expected ';'" << std::endl;
+        exit(1);
     }
-    return false;
-}
 
-bool Parser::isVarToken()
-{
-    return this->currentToken.getType() == TokenType::VAR;
-}
+    this->advance();
+    return result;
 
-bool Parser::isNewLineToken()
-{
-    return this->currentToken.getType() == TokenType::NEW_LINE;
 }

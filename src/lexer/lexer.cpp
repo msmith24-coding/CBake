@@ -16,70 +16,51 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/lexer.h"
+#include <iostream>
+
+#include <lexer.h>
 
 // +
-// | Sets default values for the lexer.
-// | Advances to the first token.
+// | Constructor used to setup the lexer before it starts
+// | building the tokens.
 // +
-Lexer::Lexer(std::string src_)
+Lexer::Lexer(std::string p_src)
 {
-    this->src = src_;
+    this->src = p_src;
     this->pos = -1;
-    this->lineCount = 1;
+    this->currentLine = 1;
     this->currentChar = 0;
+
     this->advance();
 }
 
 // +
-// | Loops while there is a character.
-// | Advances after the token has been added
-// | to the tokens vector.
+// | The main function for building the tokens given 
+// | the provided source code.
 // +
 LexResult Lexer::buildTokens()
 {
-    std::vector<Token> tokens;
     LexResult result;
+    std::vector<Token> tokens;
 
-    while(this->currentChar != 0) { 
-        if(this->shouldIgnoreCharacter()) { 
+    while(this->currentChar != 0) { /* Loops through every character in the source code. */
+        if(this->shouldIgnoreCharacter()) {
             this->advance();
         }
-        else if(this->checkCharacter('\n')) { 
+        else if(this->isNewLine()) {
             tokens.push_back(Token(TokenType::NEW_LINE));
-            this->lineCount++;
-            this->advance();
+            this->nextLine();
         }
-        else if(this->checkCharacter(';')) { 
-            tokens.push_back(Token(TokenType::END_OF_LINE)); 
-            this->advance(); 
+        else if(this->checkCharacter(';')) {
+            tokens.push_back(Token(TokenType::END_OF_LINE));
+            this->advance();
         }
         else if(this->checkCharacter(':')) {
             tokens.push_back(Token(TokenType::THEN));
             this->advance();
         }
-        else if(this->checkCharacter('<')) {
-            tokens.push_back(Token(TokenType::LTHAN));
-            this->advance();
-        }
-        else if(this->checkCharacter('>')) {
-            tokens.push_back(Token(TokenType::GTHAN));
-            this->advance();
-        }
-        else if(this->checkCharacter('[')) {
-            tokens.push_back(Token(TokenType::LBRACKET));
-            this->advance();
-        }
-        else if(this->checkCharacter(']')) {
-            tokens.push_back(Token(TokenType::RBRACKET));
-            this->advance();
-        }
         else if(this->checkCharacter('+')) {
             tokens.push_back(Token(TokenType::PLUS));
-            this->advance();
-        }
-        else if(this->checkCharacter(',')) {
-            tokens.push_back(Token(TokenType::COMMA));
             this->advance();
         }
         else if(this->checkCharacter('(')) {
@@ -90,35 +71,35 @@ LexResult Lexer::buildTokens()
             tokens.push_back(Token(TokenType::RPAREN));
             this->advance();
         }
-        else if(this->isVariable()) {
-            tokens.push_back(this->makeVariable());
-        } 
-        else if(this->currentChar == '=') {
-            tokens.push_back(this->makeEqual());
-        } 
-        else if(this->currentChar == '"') {
-            tokens.push_back(this->makeString());
+        else if(this->checkCharacter('=')) {
+            tokens.push_back(this->makeEqualToken());
+            this->advance();
         }
-        else if(isdigit(this->currentChar)) {
-
+        else if(this->isVariable()) {
+            tokens.push_back(this->makeVariableToken());
+        }
+        else if(this->isString()) {
+            tokens.push_back(this->makeStringToken());
         }
         else if(isalpha(this->currentChar)) {
-            tokens.push_back(this->makeWord());
+            tokens.push_back(this->makeIDKeyOrFunc());   
         } else {
-            //TODO (Michael): Implement an object for better error handling.
-            std::string errorStr = "";
-            errorStr += this->currentChar;
-            this->throwError("Invalid character '" + errorStr + ".");
+            std::cout << this->currentChar << std::endl;
+            std::cout << "TOKEN ERROR TODO" << std::endl;
+            exit(1);
         }
+
     }
 
+    /* Adds a token at the end to prevent unexpected end of file errors. */
     tokens.push_back(Token(TokenType::END_OF_FILE));
 
+    /* Builds the result so both the tokens and error can be returned. */
     result.tokens = tokens;
-
     return result;
+
 }
 
-/* Unused */
+/* Constructors/Destructors that are not used. */
 Lexer::Lexer() {}
 Lexer::~Lexer() {}

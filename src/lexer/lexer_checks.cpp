@@ -16,20 +16,45 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/parser.h"
+#include <lexer.h>
 
-void Parser::advance()
+// +
+// | any characters that the lexer should skip over
+// | goes here.
+// +
+bool Lexer::shouldIgnoreCharacter()
 {
-    this->position++;
-    this->currentToken = this->tokens.at(this->position);
-    if(this->currentToken.getType() != TokenType::END_OF_FILE) {
-        this->nextToken = this->tokens.at(this->position + 1);
-    }
+    return this->currentChar == ' ' || this->currentChar == '\t';
 }
 
-void Parser::throwError(std::string message)
+// +
+// | Is the character a new line character?
+// +
+bool Lexer::isNewLine()
 {
-    std::cout << "[ERR] ParserError: " << message << std::endl;
-    std::cout << "[ERR] ParserError: Line >> " << this->currentLine << std::endl;
-    exit(1);
+    return this->currentChar == '\n';
+}
+
+// + 
+// | Generic function for comparing two characters.
+// +
+bool Lexer::checkCharacter(char p_charToCheck)
+{
+    return this->currentChar == p_charToCheck;
+}
+
+// +
+// | Is the character a prefix for a variable?
+// +
+bool Lexer::isVariable()
+{
+    return this->currentChar == '$';
+}
+
+// +
+// | Is the character is a double quote?
+// +
+bool Lexer::isString()
+{
+    return this->currentChar == '"';
 }

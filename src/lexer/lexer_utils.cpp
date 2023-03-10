@@ -16,29 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/parser.h"
+#include <lexer.h>
 
-// + 
-// | Builds the command for outputting
-// | to command line.
 // +
-std::string Parser::makePrintFunc()
+// | This function adds to the position, then checks if the 
+// | it is within the bounds of the source code.
+// | Either set the current character to the source code character or
+// | set it to a null character.
+// +
+void Lexer::advance()
 {
-    this->advance();
-    if(this->currentToken.getType() == TokenType::LPAREN) {
-        this->advance();
-        std::string out = this->makeStringArg(TokenType::RPAREN);
-        this->advance();
-        if(this->currentToken.getType() == TokenType::END_OF_LINE) {
-            this->advance();
-            
-            //TODO: May need to make compatible for a different OS (Michael)
-            return "echo " + out;
-        } else {
-            this->throwError("Expected ';'");
-        }
+    this->pos++;
+    if(this->pos < this->src.length()) {
+        this->currentChar = this->src.at(this->pos);
     } else {
-        this->throwError("Expected '('");
+        this->currentChar = 0;
     }
-    return "NULL";
+}
+
+// +
+// | This function adds to the line count for error pointing.
+// | The it advances to the next token.
+// +
+void Lexer::nextLine()
+{
+    this->currentLine++;
+    this->advance();
 }

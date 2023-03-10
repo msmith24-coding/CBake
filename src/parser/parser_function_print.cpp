@@ -15,10 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+#include <parser.h>
 #include <iostream>
 
-int main()
+std::string Parser::makePrintFunction()
 {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    this->advance();
+    if(this->currentToken.getType() != TokenType::LPAREN) {
+        std::cout << "Expected '('" << std::endl;
+        exit(1);
+    }
+
+    this->advance();
+    std::string result = this->makeString(TokenType::RPAREN);
+
+    if(this->currentToken.getType() != TokenType::END_OF_LINE) {
+        std::cout << "Expected ';'" << std::endl;
+        exit(1);
+    }
+
+    this->advance();
+    return "echo " + result;
+
 }

@@ -19,17 +19,29 @@
 #include <parser.h>
 #include <iostream>
 
-Parser::Parser(std::vector<Token> p_tokens)
+void Parser::makeDef()
 {
-    this->tokens = p_tokens;
-    this->pos = -1;
-    this->currentLine = 1;
-    this->advance();
-}
+    std::string defName;
+    std::vector<std::string> result;
 
-std::map<std::string, std::vector<std::string>> Parser::buildTree()
-{
-    while(this->currentToken.getType() != TokenType::END_OF_FILE) {
+    this->advance();
+
+    if(this->currentToken.getType() != TokenType::ID) {
+        std::cout << "Expected identifer" << std::endl;
+        exit(1);
+    }
+
+    defName = this->currentToken.getValue();
+    this->advance();
+
+    if(this->currentToken.getType() != TokenType::THEN) {
+        std::cout << "Expected ':'" << std::endl;
+        exit(1);
+    }
+    
+    this->advance();
+
+    while(this->currentToken.getType() != TokenType::KEY && this->currentToken.getValue() != keywords.at(Keywords::END)) {
         if(this->isNewLineToken()) {
             this->nextLine();
         }
@@ -37,13 +49,17 @@ std::map<std::string, std::vector<std::string>> Parser::buildTree()
             if(this->currentToken.getValue() == keywords.at(Keywords::CONST)) {
                 this->makeConst();
             }
-            else if(this->currentToken.getValue() == keywords.at(Keywords::DEF)) {
-                this->makeDef();
+        }
+        else if(this->isFuncToken()) {
+            if(this->currentToken.getValue() == functions.at(Functions::RUN)) {
+                result.push_back(this->makeRunFunction());
+            }
+            else if(this->currentToken.getValue() == functions.at(Functions::PRINT)) {
+                result.push_back(this->makePrintFunction());
             }
         }
     }
-    return this->parseResult;
-}
 
-Parser::Parser() {}
-Parser::~Parser() {}
+    this->parseResult.insert({defName, result});
+    this->advance();
+}

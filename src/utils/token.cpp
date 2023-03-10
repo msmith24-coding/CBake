@@ -16,49 +16,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/token.h"
+#include <token.h>
 
-// +
-// | Sets up a token without a value.
-// +
-Token::Token(TokenType type_)
+Token::Token(TokenType p_type)
 {
-    this->type = type_;
+    this->type = p_type;
 }
 
-// +
-// | Sets up a token with a value.
-// +
-Token::Token(TokenType type_, std::string value_)
+Token::Token(TokenType p_type, std::string p_value)
 {
-    this->type = type_;
-    this->value = value_;
+    this->type = p_type;
+    this->value = p_value;
 }
 
-// +
-// | Returns a formatted string to display
-// | the token in a nice way.
-// +
 std::string Token::asString()
 {
     if(!this->value.empty()) {
-        return "[" + TokenAsString(this->type) + ":" + this->value + "]";
+        return "[" + tokenTypeAsString(this->type) + ":" + this->value + "]";
     }
-    return "[" + TokenAsString(this->type) + "]";
+    return "[" + tokenTypeAsString(this->type) + "]";
 }
 
-// +
-// | Returns the type.
-// +
-TokenType Token::getType()
+TokenType Token::getType() 
 {
     return this->type;
 }
 
-// +
-// | Returns the value only if there
-// | is a value to return. 
-// +
 std::string Token::getValue()
 {
     if(!this->value.empty()) {
@@ -67,6 +50,8 @@ std::string Token::getValue()
     return "NULL";
 }
 
-/* Unused */
+// +
+// | Not used constructors.
+// +
 Token::Token() {}
 Token::~Token() {}

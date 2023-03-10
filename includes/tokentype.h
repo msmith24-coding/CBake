@@ -16,19 +16,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/lexer.h"
+#ifndef TOKEN_TYPE_H_
+#define TOKEN_TYPE_H_
 
-bool Lexer::shouldIgnoreCharacter()
-{
-    return this->currentChar == ' ' || this->currentChar == '\t';
-}
+#include <string>
 
-bool Lexer::checkCharacter(char toCheck)
+// +
+// | A list of token types.
+// +
+enum class TokenType 
 {
-    return this->currentChar == toCheck;
-}
+    END_OF_FILE,
+    END_OF_LINE,
+    NEW_LINE,
+    
+    THEN,
+    EQ,
+    EQEQ,
+    PLUS,
+    LPAREN,
+    RPAREN,
 
-bool Lexer::isVariable()
-{
-    return this->currentChar == '$';
-}
+    VAR,
+    CONST,
+    STR,
+    KEY,
+    ID,
+    FUNC
+};
+
+/* Functions */
+std::string tokenTypeAsString(TokenType p_type);
+
+#endif

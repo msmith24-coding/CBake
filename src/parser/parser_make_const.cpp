@@ -16,39 +16,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "../../includes/parser.h"
+#include <parser.h>
 
-// + 
-// | Returns what action should be called
-// | based on it's arguments.
-// +
-std::string Parser::makeCallFunc()
+void Parser::makeConst()
 {
-    this->advance();
-    if(this->currentToken.getType() == TokenType::LPAREN) {
-        this->advance();
-        
-        // +
-        // | Reads the string argument 
-        // | for the action name. Returns 
-        // | the action name.
-        // +
-        std::string action = this->makeStringArg(TokenType::RPAREN);
+    std::string constName;
+    std::string constValue;
 
-        // +
-        // | Advances to the last token.
-        // | Checks if it ends with a semi-colon.
-        // | Returns the action name.
-        // +
+    this->advance();
+    if(this->currentToken.getType() == TokenType::ID) {
+        constName = this->currentToken.getValue();
         this->advance();
-        if(this->currentToken.getType() == TokenType::END_OF_LINE) {
+
+        if(this->currentToken.getType() == TokenType::EQ) {
             this->advance();
-            return action;
-        } else {
-            this->throwError("Expected ';'");
+            
+            constValue = this->makeString(TokenType::END_OF_LINE);
+
+            this->constSymbols.insert({constName, constValue});
+            this->advance();
         }
-    } else {
-        this->throwError("Expected '('");
+
     }
-    return "NULL";
 }
+
+
