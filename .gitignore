@@ -11,3 +11,6 @@ main
 
 # macOS
 .DS_Store
+
+# Other
+.vscode/c_cpp_properties.json
