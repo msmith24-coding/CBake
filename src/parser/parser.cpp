@@ -17,6 +17,7 @@
  */
 
 #include <parser.h>
+#include <error.h>
 #include <iostream>
 
 Parser::Parser(std::vector<Token> p_tokens)
@@ -40,6 +41,9 @@ std::map<std::string, std::vector<std::string>> Parser::buildTree()
             else if(this->currentToken.getValue() == keywords.at(Keywords::DEF)) {
                 this->makeDef();
             }
+        } 
+        else if(this->isFuncToken()) {
+            Error::throwError(currentLine, "Functions must be declared in a definition.");
         }
     }
     return this->parseResult;
