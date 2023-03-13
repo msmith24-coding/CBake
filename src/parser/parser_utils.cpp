@@ -25,12 +25,14 @@ void Parser::advance()
     this->currentToken = this->tokens.at(this->pos);
     if(this->currentToken.getType() != TokenType::END_OF_FILE) {
         this->nextToken = this->tokens.at(this->pos + 1);
+        if(this->isNewLineToken()) {
+            this->currentLine++;
+        }
     }
 }
 
 void Parser::nextLine()
 {
-    this->currentLine++;
     this->advance();
 }
 
