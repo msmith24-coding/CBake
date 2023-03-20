@@ -72,7 +72,7 @@ Token Lexer::makeStringToken()
 Token Lexer::makeIDKeyOrFunc()
 {
     std::string word;
-    while((isalpha(this->currentChar) || this->checkCharacter('_')) && (!this->checkCharacter(' '))) {
+    while((isalpha(this->currentChar) || this->checkCharacter('.') || this->checkCharacter('_')) && (!this->checkCharacter(' '))) {
         word += this->currentChar;
         this->advance();
     }

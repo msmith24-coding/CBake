@@ -43,7 +43,7 @@ std::map<std::string, std::vector<std::string>> Parser::buildTree()
             }
         } 
         else if(this->isFuncToken()) {
-            Error::throwError(currentLine, "Functions must be declared in a definition.");
+            Error::throwError(currentLine, "Functions must be used in a definition.");
         }
     }
     return this->parseResult;
