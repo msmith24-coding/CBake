@@ -31,5 +31,7 @@
 *.out
 *.app
 
+cbake
+
 .DS_Store
 .vscode
