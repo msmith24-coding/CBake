@@ -1,0 +1,9 @@
+$OUT = "TestProject";
+
+$OBJS = [
+    "test.cpp"
+];
+
+def build:
+    executable($OUT, $OBJS);
+end

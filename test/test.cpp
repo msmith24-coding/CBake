@@ -16,19 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <parser.h>
+#include <iostream>
 
-bool Parser::isNewLineToken()
+int main(int argc, char* argv[])
 {
-    return this->currentToken.getType() == TokenType::NEW_LINE;
-}
-
-bool Parser::isKeyToken()
-{
-    return this->currentToken.getType() == TokenType::KEY;
-}
-
-bool Parser::isFuncToken()
-{
-    return this->currentToken.getType() == TokenType::FUNC;
+    std::cout << "Hello, World!" << std::endl;
+    return 0; 
 }
