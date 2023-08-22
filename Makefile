@@ -1,9 +1,23 @@
-CC = g++
-CXXFLAGS = -std=c++17
+CC = gcc
+INCLUDE_DIR = ./include/
+SOURCE_DIR = ./source/
+FLAGS = -g -O2 -Wall -Wextra -Wpedantic -Werror -Wnon-virtual-dtor -Wold-style-cast -Wunused-parameter -Wuninitialized  -Winit-self  -Wshadow  -Wparentheses -Wdangling-else 
+STD_VERSION = --std=c17
+LINKER_FLAGS = 
 
-FILES = src/*.cpp
-INCLUDE = -I./include
+SOURCE = main.c logger.c
+OBJS = main.o logger.o
 OUT = cbake
 
-build:
-	${CC} ${CXXFLAGS} ${FILES} ${INCLUDE} -o ${OUT}
+all: ${OBJS}
+	${CC} -g ${OBJS} -o ${OUT} ${LINKER_FLAGS}
+	make clean
+
+main.o:
+	${CC} -c ${FLAGS} ${SOURCE_DIR}main.c ${STD_VERSION}
+
+logger.o logger.h:
+	${CC} -c ${FLAGS} ${SOURCE_DIR}logger.c ${STD_VERSION}
+
+clean:
+	rm -f ${OBJS}
