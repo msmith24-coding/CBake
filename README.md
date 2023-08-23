@@ -100,8 +100,7 @@ Designed with simplicity in mind, CBake will efficiently produce Makefiles for y
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+(In progress)
 
 ### Prerequisites
 
@@ -184,7 +183,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the GNU General Public License v3.0. See `LICENSE.txt` for more information.
+Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
