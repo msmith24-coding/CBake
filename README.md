@@ -36,9 +36,9 @@
 <h3 align="center">CBake</h3>
 
   <p align="center">
-    CBake is a simple C/C++ build tool system to generate Makefiles.
+    CBake is a simple build tool system written in C/C++ to generate Makefiles.
     <br />
-    <a href="https://github.com/msmith24-coding/CBake"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/msmith24-coding/CBake/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/msmith24-coding/CBake">View Demo</a>
@@ -92,14 +92,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* C/C++
+* Makefile
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
