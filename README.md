@@ -82,13 +82,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+### CBake
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+Designed with simplicity in mind, CBake will efficiently produce Makefiles for your C/C++ projects. CBake will automatically generate Makefiles that support compiling, linking, and managing dependencies, allow you to focus more on coding and less on build configurations.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -107,10 +105,35 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+In order to use CBake make sure your system has a C/C++ compiler, such as `gcc`, and access to the `make` command.
+* gcc
   ```sh
-  npm install npm@latest -g
+  # Linux
+  sudo apt-get update
+  sudo apt install build-essential
+  gcc --version
+
+  # macOS (Homebrew)
+  brew install gcc
+  gcc --version
+
+  # Windows (Chocolatey)
+  choco install mingw
+  gcc --version
+  ```
+* Make
+  ```sh
+  # Linux
+  sudo apt update
+  make -version
+
+  # macOS (Homebrew)
+  brew install make
+  make -version
+
+  # Windows (Chocolatey)
+  choco install make
+  make -version
   ```
 
 ### Installation
@@ -152,7 +175,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/msmith24-coding/CBake/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -173,8 +196,6 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- LICENSE -->
 ## License
