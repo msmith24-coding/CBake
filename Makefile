@@ -5,7 +5,7 @@ FLAGS = -g -O2 -Wall -Wextra -Wpedantic -Werror -Wnon-virtual-dtor -Wold-style-c
 STD_VERSION = --std=c17
 LINKER_FLAGS = 
 
-OBJS = main.o logger.o
+OBJS = main.o logger.o lexer.o
 OUT = cbake
 
 all: ${OBJS}
@@ -17,6 +17,9 @@ main.o:
 
 logger.o logger.h:
 	${CC} -c ${FLAGS} ${SOURCE_DIR}/utils/logger.c ${STD_VERSION}
+
+lexer.o lexer.h:
+	${CC} -c ${FLAGS} ${SOURCE_DIR}/lexer/lexer.c ${STD_VERSION}
 
 clean:
 	rm -f ${OBJS}

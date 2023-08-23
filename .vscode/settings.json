@@ -73,7 +73,8 @@
         "algorithm": "cpp",
         "stdio.h": "c",
         "string.h": "c",
-        "logger.h": "c"
+        "logger.h": "c",
+        "lexer.h": "c"
     },
     "testExplorer.useNativeTesting": true
 }
