@@ -3,8 +3,8 @@ project:
   type: c++
 
 options:
-  compiler: g++ 
-  flags: -Wall -O2
+  compiler: g++
+  flags: "-Wall -O2"
   include_dirs: []
 
 sources:
@@ -13,5 +13,5 @@ sources:
 headers: []
 
 clean:
-  - rm -f *.o
+  - rm -f *.o,
   - rm -f HelloWorld
