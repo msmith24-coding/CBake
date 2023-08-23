@@ -1,7 +1,7 @@
 {
     "files.associations": {
         "*.embeddedhtml": "html",
-        "CBakefile": "bat",
+        "CBakefile": "yaml",
         "*.gobj": "xml",
         "*.scn": "xml",
         "*.ember": "json",
@@ -74,5 +74,6 @@
         "stdio.h": "c",
         "string.h": "c",
         "logger.h": "c"
-    }
+    },
+    "testExplorer.useNativeTesting": true
 }

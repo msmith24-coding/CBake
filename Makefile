@@ -5,7 +5,6 @@ FLAGS = -g -O2 -Wall -Wextra -Wpedantic -Werror -Wnon-virtual-dtor -Wold-style-c
 STD_VERSION = --std=c17
 LINKER_FLAGS = 
 
-SOURCE = main.c logger.c
 OBJS = main.o logger.o
 OUT = cbake
 
@@ -17,7 +16,7 @@ main.o:
 	${CC} -c ${FLAGS} ${SOURCE_DIR}main.c ${STD_VERSION}
 
 logger.o logger.h:
-	${CC} -c ${FLAGS} ${SOURCE_DIR}logger.c ${STD_VERSION}
+	${CC} -c ${FLAGS} ${SOURCE_DIR}/utils/logger.c ${STD_VERSION}
 
 clean:
 	rm -f ${OBJS}

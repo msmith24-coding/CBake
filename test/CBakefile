@@ -1,0 +1,17 @@
+project:
+  name: HelloWorld
+  type: c++
+
+options:
+  compiler: g++ 
+  flags: -Wall -O2
+  include_dirs: []
+
+sources:
+  - test.cpp
+
+headers: []
+
+clean:
+  - rm -f *.o
+  - rm -f HelloWorld
