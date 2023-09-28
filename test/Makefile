@@ -1,0 +1,2 @@
+OUT = TestProject
+CC = g++

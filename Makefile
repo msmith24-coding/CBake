@@ -1,11 +1,11 @@
-CC = gcc
+CC = g++
 INCLUDE_DIR = ./include/
 SOURCE_DIR = ./source/
-FLAGS = -g -O2 -Wall -Wextra -Wpedantic -Werror -Wnon-virtual-dtor -Wold-style-cast -Wunused-parameter -Wuninitialized  -Winit-self  -Wshadow  -Wparentheses -Wdangling-else 
-STD_VERSION = --std=c17
+FLAGS = -g -O2 -Wall -Wextra -Wpedantic -Wnon-virtual-dtor -Wold-style-cast -Wuninitialized  -Winit-self  -Wshadow  -Wparentheses -Wdangling-else 
+STD_VERSION = --std=c++20
 LINKER_FLAGS = 
 
-OBJS = main.o logger.o lexer.o
+OBJS = main.o
 OUT = cbake
 
 all: ${OBJS}
@@ -13,13 +13,7 @@ all: ${OBJS}
 	make clean
 
 main.o:
-	${CC} -c ${FLAGS} ${SOURCE_DIR}main.c ${STD_VERSION}
-
-logger.o logger.h:
-	${CC} -c ${FLAGS} ${SOURCE_DIR}/utils/logger.c ${STD_VERSION}
-
-lexer.o lexer.h:
-	${CC} -c ${FLAGS} ${SOURCE_DIR}/lexer/lexer.c ${STD_VERSION}
+	${CC} -c ${FLAGS} ${SOURCE_DIR}main.cpp ${STD_VERSION}
 
 clean:
 	rm -f ${OBJS}
