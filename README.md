@@ -43,9 +43,9 @@
     <br />
     <a href="https://github.com/msmith24-coding/CBake">View Demo</a>
     ·
-    <a href="https://github.com/msmith24-coding/CBake/issues">Report Bug</a>
+    <a href="https://github.com/msmith24-coding/CBake/issues/new">Report Bug</a>
     ·
-    <a href="https://github.com/msmith24-coding/CBake/issues">Request Feature</a>
+    <a href="https://github.com/msmith24-coding/CBake/issues/ew">Request Feature</a>
   </p>
 </div>
 
