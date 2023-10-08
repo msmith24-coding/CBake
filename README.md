@@ -36,7 +36,7 @@
 <h3 align="center">CBake</h3>
 
   <p align="center">
-    CBake is a simple build tool system written in C/C++ to generate Makefiles.
+    CBake is a simple build tool system written in C++ to generate Makefiles.
     <br />
     <a href="https://github.com/msmith24-coding/CBake/wiki"><strong>Explore the docs »</strong></a>
     <br />
@@ -90,7 +90,7 @@ Designed with simplicity in mind, CBake will efficiently produce Makefiles for y
 
 ### Built With
 
-* C/C++
+* C++
 * Makefile
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
