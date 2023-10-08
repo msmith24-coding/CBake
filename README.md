@@ -153,10 +153,9 @@ The main reason why you should use CBake is to easily generate complex Makefiles
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] CBakefile:
+    - [ ] CBakefile to compile a project directly.
+    - [ ] CBakefile to generate a Makefile.
 
 See the [open issues](https://github.com/msmith24-coding/CBake/issues) for a full list of proposed features (and known issues).
 
