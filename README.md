@@ -156,6 +156,7 @@ The main reason why you should use CBake is to easily generate complex Makefiles
 - [ ] CBakefile:
     - [ ] CBakefile to compile a project directly.
     - [ ] CBakefile to generate a Makefile.
+- [ ] CBake package manager
 
 See the [open issues](https://github.com/msmith24-coding/CBake/issues) for a full list of proposed features (and known issues).
 
@@ -186,8 +187,6 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
 ## Contact
 Project Link: [https://github.com/msmith24-coding/CBake](https://github.com/msmith24-coding/CBake)
@@ -197,7 +196,7 @@ Project Link: [https://github.com/msmith24-coding/CBake](https://github.com/msmi
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
+* [Michael Smith](https://github.com/msmith24-coding)
 * []()
 * []()
 

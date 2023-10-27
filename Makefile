@@ -1,19 +1,26 @@
 CC = g++
-INCLUDE_DIR = ./include/
-SOURCE_DIR = ./source/
-FLAGS = -g -O2 -Wall -Wextra -Wpedantic -Wnon-virtual-dtor -Wold-style-cast -Wuninitialized  -Winit-self  -Wshadow  -Wparentheses -Wdangling-else 
-STD_VERSION = --std=c++20
-LINKER_FLAGS = 
+CXXFLAGS = -g -O2 --std=c++17 -Wall -Wextra -Wpedantic -Wnon-virtual-dtor -Wold-style-cast -Wuninitialized  -Winit-self  -Wshadow  -Wparentheses -Wdangling-else 
 
+INCLUDE_DIR = ./include
+SOURCE_DIR = ./source
 OBJS = main.o
+
+ifeq ($(OS),Windows_NT)
+RM_CMD = del /Q /F
+OUT = cbake.exe
+else
+RM_CMD = rm -rf
 OUT = cbake
+endif
 
 all: ${OBJS}
-	${CC} -g ${OBJS} -o ${OUT} ${LINKER_FLAGS}
-	make clean
+	${CC} ${CXXFLAGS} ${OBJS} -o ${OUT} -I${INCLUDE_DIR}
 
 main.o:
-	${CC} -c ${FLAGS} ${SOURCE_DIR}main.cpp ${STD_VERSION}
+	${CC} -c ${CXXFLAGS} ${SOURCE_DIR}/main.cpp -I${INCLUDE_DIR}
 
+
+
+.PHONY: clean
 clean:
-	rm -f ${OBJS}
+	${RM_CMD} ${OBJS} ${OUT}
